@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.13.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.13.0)" variant="fatal" version="8.13.0">
+
+    <issue
+        id="NotSibling"
+        message="`@+id/linearLayout` is not a sibling in the same `RelativeLayout`"
+        errorLine1="        android:layout_below=&quot;@+id/linearLayout&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw600dp/activity_workout_history_list.xml"
+            line="113"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@+id/linearLayout` is not a sibling in the same `RelativeLayout`"
+        errorLine1="        android:layout_below=&quot;@+id/linearLayout&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/activity_workout_history_list.xml"
+            line="113"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@+id/linearLayout` is not a sibling in the same `RelativeLayout`"
+        errorLine1="        android:layout_below=&quot;@+id/linearLayout&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout-w1240dp/activity_workout_history_list.xml"
+            line="113"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@+id/linearLayout` is not a sibling in the same `RelativeLayout`"
+        errorLine1="        android:layout_below=&quot;@+id/linearLayout&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout-w936dp/activity_workout_history_list.xml"
+            line="113"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@+id/linearLayout` is not a sibling in the same `RelativeLayout`"
+        errorLine1="        android:layout_below=&quot;@+id/linearLayout&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_workout_history_list.xml"
+            line="113"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@+id/horizontalScrollView` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        app:layout_constraintBottom_toTopOf=&quot;@+id/horizontalScrollView&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/menu_circular.xml"
+            line="136"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@+id/adView_main` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        ads:layout_constraintBottom_toTopOf=&quot;@+id/adView_main&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/menu_main_backup.xml"
+            line="144"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ExtraTranslation"
+        message="&quot;fourtime&quot; is translated here but not found in default locale"
+        errorLine1="    &lt;string name=&quot;fourtime&quot;>للوقت&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-ar/strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ExtraTranslation"
+        message="&quot;fourtime&quot; is translated here but not found in default locale"
+        errorLine1="    &lt;string name=&quot;fourtime&quot;>FOR TIME&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-tr/strings.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ExtraTranslation"
+        message="&quot;fourtime&quot; is translated here but not found in default locale"
+        errorLine1="    &lt;string name=&quot;fourtime&quot;>FOR TIME&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-fr/strings.xml"
+            line="70"
+            column="13"/>
+    </issue>
+
+</issues>
