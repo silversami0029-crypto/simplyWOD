@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context="com.example.fitwod.CalendarActivity"
+    tools:context=".fitwod.CalendarActivity"
     android:padding="16dp">
 
     <!-- Month Navigation -->

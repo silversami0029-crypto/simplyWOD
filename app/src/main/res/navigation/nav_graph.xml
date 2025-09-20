@@ -8,7 +8,7 @@
     <!-- Home Fragment -->
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.fitwod.HomeFragment"
+        android:name="com.bessadi.fitwod.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
 
@@ -38,7 +38,7 @@
     <!-- Workout Fragment (placeholder - create if needed) -->
     <fragment
         android:id="@+id/workoutFragment"
-        android:name="com.example.fitwod.WorkoutFragment"
+        android:name="com.bessadi.fitwod.WorkoutFragment"
         android:label="Workout"
         tools:layout="@layout/fragment_workout" />
 

@@ -34,7 +34,7 @@
     <!-- Add other fragments as needed -->
     <fragment
         android:id="@+id/workoutFragment"
-        android:name="com.example.fitwod.WorkoutFragment"
+        android:name="com.bessadi.fitwod.WorkoutFragment"
         android:label="Workout"
         tools:layout="@layout/fragment_workout" />
 

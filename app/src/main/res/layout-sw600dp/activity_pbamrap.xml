@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context="com.example.fitwod.pbamrap">
+    tools:context=".fitwod.pbamrap">
 
   <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context="com.example.fitwod.Menu_Activity">
+    tools:context=".fitwod.Menu_Activity">
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
