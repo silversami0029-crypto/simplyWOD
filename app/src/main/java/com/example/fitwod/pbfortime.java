@@ -472,7 +472,7 @@ public class pbfortime extends AppCompatActivity {
             long id = dbHelper.insertWorkout(
                     "FOR TIME",
                     timeSelected,
-                    0,
+                    counter,
                     roundSelected,
                     voiceNotePath,  // Use the recorded voice path
                     ""  // Empty video note

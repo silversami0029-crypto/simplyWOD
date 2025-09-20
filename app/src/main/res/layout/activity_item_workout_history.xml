@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="0dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginVertical="1dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+
+
+        <ImageView
+            android:id="@+id/ivWorkoutType"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_tabata" />
+
+        <TextView
+            android:id="@+id/tvWorkoutParams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawablePadding="1dp"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:paddingVertical="14dp"
+            android:paddingStart="1dp"
+            android:paddingEnd="1dp"
+            android:textColor="@color/blue1"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="Work: 30s \Rest: 15s \Rounds: 8" />
+
+        <!-- Add to your item_workout_history.xml -->
+
+
+        <TextView
+            android:id="@+id/tvWorkoutDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawablePadding="1dp"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:paddingVertical="14dp"
+            android:paddingStart="1dp"
+            android:paddingEnd="1dp"
+            android:textColor="@color/blue1"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="2023-05-15 14:30:45" />
+
+        <ImageButton
+            android:id="@+id/btnPlayVoice"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/play_voice_note"
+            android:src="@drawable/ic_play_voice"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <ImageButton
+            android:id="@+id/btnTakePhoto"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/play_video_note"
+            android:src="@drawable/ic_photo"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

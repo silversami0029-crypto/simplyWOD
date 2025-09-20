@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="periods_array">
+        <item>All Time</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
+</resources>

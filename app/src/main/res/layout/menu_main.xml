@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.fitwod.Menu_Activity">
+
+    <!-- App Title -->
+    <TextView
+        android:id="@+id/tvAppTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="simplywod"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp" />
+
+    <!-- Button Container -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppTitle"
+        app:layout_constraintBottom_toTopOf="@+id/bottomIconContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <!-- AMRAP Button -->
+        <Button
+            android:id="@+id/amrap"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_custom_selector_amrap"
+            android:text="@string/amrap"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+        <!-- EMOM Button -->
+        <Button
+            android:id="@+id/emom"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_custom_selector"
+            android:text="@string/emom"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+        <!-- FOR TIME Button -->
+        <Button
+            android:id="@+id/fortime"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_custom_selector_fortime"
+            android:text="@string/for_time"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+        <!-- TABATA Button -->
+        <Button
+            android:id="@+id/tabata"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_custom_selector_tabata"
+            android:text="@string/tabata"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+    </LinearLayout>
+
+    <!-- Bottom Icon Container -->
+    <LinearLayout
+        android:id="@+id/bottomIconContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/adView_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Analytics Icon -->
+        <ImageButton
+            android:id="@+id/btnAnalytics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/analytics"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Analytics"
+            tools:ignore="ContentDescription" />
+
+        <!-- Log Icon -->
+        <ImageButton
+            android:id="@+id/btnLog"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_history"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Workout Log"
+            tools:ignore="ContentDescription" />
+        <!--trophy icon-->
+
+
+    </LinearLayout>
+
+    <!-- Ad Banner at Bottom -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="@string/banner_id_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/menu_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="Menu"
+        android:src="@drawable/ic_menu"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContainer"
+        app:layout_constraintEnd_toStartOf="@+id/tvAppTitle"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.182" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

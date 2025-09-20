@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/timer" android:title="Timers" />
+    <item android:id="@+id/workout_log" android:title="Workout Log" />
+    <item android:id="@+id/recommend" android:title="Recommend SimplyWOD" />
+    <item android:id="@+id/rate" android:title="Rate SimplyWOD" />
+    <item android:id="@+id/settings_help" android:title="Settings and Help" />
+</menu>

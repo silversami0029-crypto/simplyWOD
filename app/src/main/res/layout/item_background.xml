@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_margin="8dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="Background image" />
+
+    <!-- Selection indicator (tick mark) -->
+    <ImageView
+        android:id="@+id/selectionIndicator"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_check_circle"
+        android:visibility="gone"
+        android:padding="4dp"
+        android:tint="@android:color/holo_green_dark" />
+
+    <!-- Border indicator -->
+    <View
+        android:id="@+id/borderIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_selection_border"
+        android:visibility="gone" />
+
+</FrameLayout>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Today's Nutrition"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Calories Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calories"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/0 cal"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <ProgressBar
+            android:id="@+id/pbCalories"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:progress="0"
+            android:max="100"
+            android:progressTint="@color/progress_calories"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Protein Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Protein"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvProtein"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/0 g"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <ProgressBar
+            android:id="@+id/pbProtein"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:progress="0"
+            android:max="100"
+            android:progressTint="@color/progress_protein"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Carbs Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Carbs"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvCarbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/0 g"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <ProgressBar
+            android:id="@+id/pbCarbs"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:progress="0"
+            android:max="100"
+            android:progressTint="@color/progress_carbs"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Fat Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fat"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvFat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/0 g"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <ProgressBar
+            android:id="@+id/pbFat"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:progress="0"
+            android:max="100"
+            android:progressTint="@color/progress_fat"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Water Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Water"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvWater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/0 L"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <ProgressBar
+            android:id="@+id/pbWater"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:progress="0"
+            android:max="100"
+            android:progressTint="@color/progress_water"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Report Button -->
+        <Button
+            android:id="@+id/btnGenerateReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate Weekly Report"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Recent Meals Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recent Meals"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Recent Meals List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecentMeals"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scrollbars="vertical"/>
+    </LinearLayout>
+</ScrollView>

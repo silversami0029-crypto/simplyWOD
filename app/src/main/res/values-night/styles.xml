@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark theme version -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">#021D33</item>
+        <item name="colorAccent">@color/primaryColor</item>
+
+        <!-- Dark theme colors -->
+        <item name="colorBackground">@color/blue1</item>
+        <item name="colorOnBackground">@color/colorAccent</item>
+        <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/white</item>
+    </style>
+</resources>

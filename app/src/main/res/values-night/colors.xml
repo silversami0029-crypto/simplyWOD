@@ -1,0 +1,17 @@
+<!-- values-night/colors.xml -->
+<resources>
+    <color name="colorPrimary">#BB86FC</color>
+    <color name="colorPrimaryDark">#0C0B0D</color>
+    <color name="colorAccent">#03DAC6</color>
+
+    <!-- Background and text colors for dark theme -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+
+    <color name="onBackground">#000000</color>
+    <color name="onSurface">#000000</color>
+    <color name="darkBackground">#121212</color>
+    <color name="darkSurface">#1E1E1E</color>
+    <color name="darkOnBackground">#FFFFFF</color>
+    <color name="darkOnSurface">#FFFFFF</color>
+</resources>

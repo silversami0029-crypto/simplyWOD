@@ -10,11 +10,15 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,6 +68,33 @@ public class PerformanceAnalyticsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // --- CORRECTED CODE FOR EDGE-TO-EDGE LAYOUT ---
+        // 1. Request to draw behind the system bars
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        // 2. Handle the insets for the root view of your activity
+        View rootView = findViewById(android.R.id.content);
+        View mainContentView = ((ViewGroup) rootView).getChildAt(0); // Gets the first child of the root (usually your layout)
+
+        if (mainContentView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainContentView, (v, insets) -> {
+                // Get the insets for the system bars (status bar + navigation bar)
+                // 'insets' is already a WindowInsetsCompat object!
+                int systemBarsTop = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+                int systemBarsBottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+
+                // Apply the top inset as padding to push the content down below the status bar
+                v.setPadding(v.getPaddingLeft(),
+                        systemBarsTop, // This is the crucial padding for the top
+                        v.getPaddingRight(),
+                        systemBarsBottom); // And for the bottom nav bar if needed
+
+                // Return the insets, consuming the parts we've used for padding
+                return insets;
+            });
+        }
+        // --- END OF CORRECTED CODE ---
+
         setContentView(R.layout.activity_performance_analytics);
 
 

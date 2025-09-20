@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <!-- Base application theme. -->
+    <style name="Theme.FitWOD" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimaryDark">@color/blue1</item>
+        <item name="colorAccent">@color/blue</item>
+        <!-- Set a solid background to override any "G" -->
+        <item name="android:windowBackground">@color/white</item>
+        <!-- Add Material3 specific attributes -->
+        <item name="materialThemeOverlay">@style/ThemeOverlay.FitWOD</item>
+    </style>
+    <!-- Theme overlay for buttons -->
+    <style name="ThemeOverlay.FitWOD" parent="">
+        <item name="buttonStyle">@style/Widget.FitWOD.Button</item>
+        <item name="materialButtonStyle">@style/Widget.FitWOD.Button.Material</item>
+    </style>
+    <!-- Custom button style -->
+
+
+    <style name="Widget.FitWOD.Button.Material" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/button_filler_selected</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/blue</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+</resources>

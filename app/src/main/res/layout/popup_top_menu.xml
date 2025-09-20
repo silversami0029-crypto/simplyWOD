@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popupContainer"
+    android:layout_width="wrap_content"
+    android:minWidth="250dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:elevation="16dp"
+    android:background="@drawable/default_bg_4"
+    android:outlineProvider="background"
+    android:paddingVertical="8dp">
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:radius="12dp"
+        android:fontFamily="sans-serif-light"
+        android:background="@drawable/default_bg_4"/>
+
+    <Button
+        android:id="@+id/bWorkoutlog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/workout_logs"
+        android:textAllCaps="false"
+        android:gravity="left"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/black"
+        android:background="@drawable/default_bg_4"/>
+    <Button
+        android:id="@+id/bAnalytics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/analytics"
+        android:textAllCaps="false"
+        android:gravity="left"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/black"
+        android:background="@drawable/default_bg_4"/>
+    <Button
+        android:id="@+id/bBackground_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change_layout_background"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-light"
+        android:background="@drawable/default_bg_4"/>
+
+    <Button
+        android:id="@+id/bRecommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recommend_app"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:gravity="left"
+        android:fontFamily="sans-serif-light"
+        android:background="@drawable/default_bg_4"/>
+    <Button
+        android:id="@+id/bRateUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rate_app"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-light"
+        android:background="@drawable/default_bg_4"/>
+
+    <Button
+        android:id="@+id/bRequestfeatures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/request_features"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-light"
+        android:background="@drawable/default_bg_4"/>
+
+    <Button
+        android:id="@+id/bLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change_language"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-light"
+        android:background="@drawable/default_bg_4"/>
+
+
+
+     <Button
+         android:id="@+id/bSubscription"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/subscription_page"
+         android:textColor="@color/black"
+         android:textAllCaps="false"
+         android:gravity="left"
+         android:visibility="gone"
+         android:fontFamily="sans-serif-light"
+         android:background="@drawable/default_bg_4"/>
+
+    <!--<Button
+        android:id="@+id/bVideoNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Video Note"
+        android:textAllCaps="false"
+        android:gravity="left"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/white"
+        android:background="@color/black"/>-->
+</LinearLayout>

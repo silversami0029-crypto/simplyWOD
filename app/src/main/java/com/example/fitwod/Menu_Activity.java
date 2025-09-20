@@ -40,6 +40,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +56,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
-//public class Menu_Activity extends AppCompatActivity {
+
     public class Menu_Activity extends BaseActivity implements AchievementsListener {
 
     private boolean isTestingMode = true; // Set to false for production
@@ -138,6 +141,33 @@ import java.util.List;
         AppCompatDelegate.setDefaultNightMode(savedTheme);
 
         setContentView(R.layout.menu_main_cards);
+        // --- CORRECTED CODE FOR EDGE-TO-EDGE LAYOUT ---
+        // 1. Request to draw behind the system bars
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        // 2. Handle the insets for the root view of your activity
+        View rootView = findViewById(android.R.id.content);
+        View mainContentView = ((ViewGroup) rootView).getChildAt(0); // Gets the first child of the root (usually your layout)
+
+        if (mainContentView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainContentView, (v, insets) -> {
+                // Get the insets for the system bars (status bar + navigation bar)
+                // 'insets' is already a WindowInsetsCompat object!
+                int systemBarsTop = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+                int systemBarsBottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+
+                // Apply the top inset as padding to push the content down below the status bar
+                v.setPadding(v.getPaddingLeft(),
+                        systemBarsTop, // This is the crucial padding for the top
+                        v.getPaddingRight(),
+                        systemBarsBottom); // And for the bottom nav bar if needed
+
+                // Return the insets, consuming the parts we've used for padding
+                return insets;
+            });
+        }
+        // --- END OF CORRECTED CODE ---
+
 
 
         // Initialize simple preferences first

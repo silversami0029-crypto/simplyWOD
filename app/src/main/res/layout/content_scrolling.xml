@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta name="generator" content=
+            "HTML Tidy for HTML5 for Linux version 5.6.0" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content=
+            "width=device-width, initial-scale=1.0" />
+        <title>Feature Request</title>
+
+        <style>
+            <![CDATA[
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #4361ee;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2d3748;
+            font-size: 15px;
+        }
+
+        textarea, input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: #4361ee;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .checkbox-group input {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            color: #4a5568;
+        }
+
+        .optional-fields {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease;
+        }
+
+        .optional-fields.show {
+            max-height: 200px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background: #4361ee;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #3a56d4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+        }
+
+        .clear-btn {
+            background: #f8f9fa;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+
+        .clear-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .thank-you {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+
+        .thank-you h2 {
+            color: #4361ee;
+            margin-bottom: 15px;
+        }
+
+        .thank-you p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+]]>
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Request Features</h1>
+                <p>We'd love to hear your ideas to improve our app</p>
+            </div>
+            <div class="form-container" id="formContainer">
+                <form id="featureRequestForm" name="featureRequestForm">
+                    <div class="form-group"><label for="featureRequest">Your feature
+                        request*</label>
+                        <textarea id="featureRequest" name="featureRequest" placeholder=
+                            "Please describe the feature you'd like to see in our app..."
+                            required=""></textarea></div>
+                    <div class="form-group"><label for="moreContext">Giving more
+                        context about your request helps us to improve the app even
+                        better.</label>
+                        <textarea id="moreContext" name="moreContext" placeholder=
+                            "Add any additional context, use cases, or examples that might help us understand your request...">
+                        </textarea></div>
+                    <div class="checkbox-group"><input type="checkbox" id=
+                        "willingToAnswer" /> <label for="willingToAnswer">Would you be
+                        willing to answer more questions about your request?</label></div>
+                    <div class="optional-fields" id="optionalFields">
+                        <div class="form-group"><label for="userName">Your Name</label>
+                            <input type="text" id="userName" name="userName" placeholder=
+                                "Enter your name" /></div>
+                        <div class="form-group"><label for="userEmail">Your Email*</label>
+                            <input type="email" id="userEmail" name="userEmail" placeholder=
+                                "Enter your email address" /></div>
+                    </div>
+                    <div class="button-group"><button type="submit" class=
+                        "submit-btn">Submit</button> <button type="button" class=
+                        "clear-btn" id="clearBtn">Clear Form</button></div>
+                </form>
+            </div>
+            <div class="thank-you" id="thankYouMessage">
+                <h2>Thank You!</h2>
+                <p>We appreciate your feedback and will review your feature request
+                    shortly.</p>
+            </div>
+        </div>
+        <script>
+            <![CDATA[
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('featureRequestForm');
+        const clearBtn = document.getElementById('clearBtn');
+        const willingCheckbox = document.getElementById('willingToAnswer');
+        const optionalFields = document.getElementById('optionalFields');
+        const formContainer = document.getElementById('formContainer');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+
+        // Toggle optional fields based on checkbox
+        willingCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                optionalFields.classList.add('show');
+            } else {
+                optionalFields.classList.remove('show');
+            }
+        });
+
+        // Clear form
+        clearBtn.addEventListener('click', function() {
+            form.reset();
+            optionalFields.classList.remove('show');
+            willingCheckbox.checked = false;
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const featureRequest = document.getElementById('featureRequest').value;
+            const moreContext = document.getElementById('moreContext').value;
+            const willingToAnswer = document.getElementById('willingToAnswer').checked;
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+
+            // Validate if user checked the box but didn't provide email
+            if (willingToAnswer && !userEmail) {
+                alert('Please provide your email address if you are willing to answer more questions.');
+                return;
+            }
+
+            // Create email content
+            let subject = 'Feature Request for SmartWOD App';
+            let body = Feature Request: ${featureRequest}%0D%0A%0D%0A;
+            body += Additional Context: ${moreContext}%0D%0A%0D%0A;
+            body += Willing to answer more questions: ${willingToAnswer ? 'Yes' : 'No'}%0D%0A;
+
+            if (willingToAnswer) {
+                body += User Name: ${userName}%0D%0A;
+                body += User Email: ${userEmail};
+            }
+
+            // Open email client (replace with your email address)
+            const email = 'your-email@example.com';
+            window.location.href = mailto:${email}?subject=${subject}&body=${body};
+
+            // Show thank you message
+            formContainer.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+        });
+    });
+]]>
+        </script>
+    </body>
+</html>
