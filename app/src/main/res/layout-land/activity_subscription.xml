@@ -50,7 +50,7 @@
             <!-- Monthly Option -->
             <LinearLayout
                 android:id="@+id/monthly_option"
-                android:layout_width="48dp"
+                android:layout_width="@dimen/button_width"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
@@ -105,7 +105,7 @@
             <!-- Quarterly Option -->
             <LinearLayout
                 android:id="@+id/yearly_option"
-                android:layout_width="48dp"
+                android:layout_width="@dimen/button_width"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
@@ -156,7 +156,7 @@
             <!-- Yearly Option -->
             <LinearLayout
                 android:id="@+id/life_time_option"
-                android:layout_width="48dp"
+                android:layout_width="@dimen/button_width"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
@@ -257,7 +257,7 @@
                     android:visibility="gone"/>
 
                 <TextView
-                    android:layout_width="48dp"
+                    android:layout_width="@dimen/button_width"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Access the MIX timer option"
@@ -293,7 +293,7 @@
                     android:layout_marginRight="8dp" />
 
                 <TextView
-                    android:layout_width="48dp"
+                    android:layout_width="@dimen/button_width"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/remove_adds"
@@ -329,7 +329,7 @@
                     android:layout_marginRight="8dp" />
 
                 <TextView
-                    android:layout_width="48dp"
+                    android:layout_width="@dimen/button_width"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Save timers as presets"
@@ -367,7 +367,7 @@
                 android:layout_marginRight="8dp" />
 
                 <TextView
-                    android:layout_width="48dp"
+                    android:layout_width="@dimen/button_width"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="0dp"
                     android:layout_marginBottom="16dp"
@@ -401,7 +401,7 @@
                     android:layout_marginRight="8dp" />
 
                 <TextView
-                    android:layout_width="48dp"
+                    android:layout_width="@dimen/button_width"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/backgrouns_image"
@@ -435,7 +435,7 @@
                     android:layout_marginRight="8dp" />
 
                 <TextView
-                    android:layout_width="48dp"
+                    android:layout_width="@dimen/button_width"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/and_even_more"

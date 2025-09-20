@@ -5,6 +5,25 @@
     android:orientation="vertical"
     android:background="@drawable/bg_white_rounded"
     android:padding="8dp">
+    <!-- Add your logo here -->
+    <ImageView
+        android:id="@+id/ivDialogLogo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="left"
+        android:src="@drawable/logo"
+    android:scaleType="fitCenter"
+    android:layout_marginBottom="16dp"/>
+
+    <!-- Optional: Add a title below the logo -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginBottom="8dp"/>
 
     <DatePicker
         android:id="@+id/custom_date_picker"

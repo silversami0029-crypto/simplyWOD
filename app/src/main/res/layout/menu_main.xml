@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".fitwod.Menu_Activity">
+    tools:context="com.bessadi.fitwod.Menu_Activity">
 
     <!-- App Title -->
     <TextView
@@ -25,7 +25,7 @@
     <!-- Button Container -->
     <LinearLayout
         android:id="@+id/buttonContainer"
-        android:layout_width="0dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
@@ -39,7 +39,7 @@
         <!-- AMRAP Button -->
         <Button
             android:id="@+id/amrap"
-            android:layout_width="280dp"
+            android:layout_width="48dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/button_custom_selector_amrap"
@@ -52,7 +52,7 @@
         <!-- EMOM Button -->
         <Button
             android:id="@+id/emom"
-            android:layout_width="280dp"
+            android:layout_width="48dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/button_custom_selector"
@@ -65,7 +65,7 @@
         <!-- FOR TIME Button -->
         <Button
             android:id="@+id/fortime"
-            android:layout_width="280dp"
+            android:layout_width="48dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/button_custom_selector_fortime"
@@ -78,7 +78,7 @@
         <!-- TABATA Button -->
         <Button
             android:id="@+id/tabata"
-            android:layout_width="280dp"
+            android:layout_width="48dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/button_custom_selector_tabata"
@@ -139,7 +139,7 @@
 
     <ImageView
         android:id="@+id/menu_button"
-        android:layout_width="24dp"
+        android:layout_width="48dp"
         android:layout_height="24dp"
         android:contentDescription="Menu"
         android:src="@drawable/ic_menu"

@@ -17,8 +17,8 @@
         <!-- back button -->
         <ImageButton
             android:id="@+id/ib_back_per"
-            android:layout_width="@dimen/width_xs"
-            android:layout_height="@dimen/height_xs"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="48dp"
             android:background="@color/black"
             android:contentDescription="@string/ib_desc"
             android:src="@drawable/arrow_white"/>
@@ -89,8 +89,8 @@
 
             <!-- Total Workouts Card -->
             <androidx.cardview.widget.CardView
-                android:layout_width="@dimen/width_xs"
-                android:layout_height="@dimen/height_xl"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="120dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 app:cardBackgroundColor="@color/cardview_dark_background"
@@ -123,8 +123,8 @@
 
             <!-- Total Duration Card -->
             <androidx.cardview.widget.CardView
-                android:layout_width="@dimen/width_xs"
-                android:layout_height="@dimen/height_xl"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="120dp"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/cardview_dark_background"
                 app:cardCornerRadius="8dp">

@@ -1,5 +1,27 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+    <!-- Width System -->
+    <dimen name="width_xs">48dp</dimen>
+    <dimen name="width_s">62dp</dimen>
+    <dimen name="width_m">120dp</dimen>
+    <dimen name="width_ml">170dp</dimen>
+    <dimen name="width_l">209dp</dimen>
+    <dimen name="width_250">250dp</dimen>
+    <dimen name="width_xl">322dp</dimen>
+    <dimen name="width_xxl">360dp</dimen>
+    <dimen name="width_xxxl">420dp</dimen>
+
+    <!-- Height System -->
+    <dimen name="height_xs">48dp</dimen>
+    <dimen name="height_xxs">24dp</dimen>
+    <dimen name="height_32">32dp</dimen>
+    <dimen name="height_xxss">28dp</dimen>
+    <dimen name="height_s">55dp</dimen>
+    <dimen name="height_m">62dp</dimen>
+    <dimen name="height_ml">80dp</dimen>
+    <dimen name="height_l">120dp</dimen>
+    <dimen name="height_xl">311dp</dimen>
+    <dimen name="height_xxl">320dp</dimen>
+    <dimen name="height_250">250dp</dimen>
+    <dimen name="height_xxxl">590dp</dimen>
+
 </resources>

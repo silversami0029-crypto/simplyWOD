@@ -7,13 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".fitwod.pbfortime">
+    tools:context="com.bessadi.fitwod.pbfortime">
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_id_1"
-        android:layout_width="399dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +26,7 @@
 
     <ImageButton
         android:id="@+id/btnAdd_ft"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/ib_desc"
@@ -41,7 +41,7 @@
 
     <ImageButton
         android:id="@+id/btnRecordVoice_fortime"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
@@ -72,7 +72,7 @@
 
     <TextView
         android:id="@+id/tvcounterButton_ft"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:background="@drawable/circular_shape_time"
         android:gravity="center"
@@ -88,7 +88,7 @@
 
     <ImageButton
         android:id="@+id/ib_reset_ft"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/ib_desc"
@@ -104,7 +104,7 @@
 
     <ImageButton
         android:id="@+id/ib_back_ft"
-        android:layout_width="62dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="55dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/ib_desc"
@@ -118,7 +118,7 @@
 
     <TextView
         android:id="@+id/tvTitle_ft"
-        android:layout_width="209dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="40dp"
         android:gravity="center"
         android:text="@string/for_time"
@@ -179,7 +179,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="301dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="288dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -190,7 +190,7 @@
 
         <ImageButton
             android:id="@+id/ibPlay_ft"
-            android:layout_width="48dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
             android:baselineAligned="false"
@@ -208,7 +208,7 @@
 
         <TextView
             android:id="@+id/tvTimeLeft_ft"
-            android:layout_width="170dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
             android:layout_marginBottom="116dp"
             android:gravity="center"
@@ -225,7 +225,7 @@
         <ProgressBar
             android:id="@+id/pbTimer_ft"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="322dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="311dp"
             android:layout_marginEnd="0dp"
             android:background="@drawable/transparent_progressbar_background_stroke"

@@ -23,7 +23,7 @@
     <!-- Grid Layout for Buttons (2x2) -->
     <GridLayout
         android:id="@+id/buttonGrid"
-        android:layout_width="0dp"
+        android:layout_width="48dp"
         android:layout_height="0dp"
         android:columnCount="2"
         android:rowCount="2"
@@ -38,7 +38,7 @@
         <!-- AMRAP Button -->
         <Button
             android:id="@+id/amrap"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="120dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
@@ -52,7 +52,7 @@
         <!-- EMOM Button -->
         <Button
             android:id="@+id/emom"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="120dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
@@ -66,7 +66,7 @@
         <!-- FOR TIME Button -->
         <Button
             android:id="@+id/fortime"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="120dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
@@ -80,7 +80,7 @@
         <!-- TABATA Button -->
         <Button
             android:id="@+id/tabata"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="120dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"

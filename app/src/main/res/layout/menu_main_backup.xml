@@ -8,12 +8,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".fitwod.Menu_Activity">
+    tools:context="com.bessadi.fitwod.Menu_Activity">
 
 <!--
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView_main"
-        android:layout_width="399dp"
+        android:layout_width="48dp"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
@@ -27,7 +27,7 @@
 
     <Button
         android:id="@+id/emom"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button_custom_selector"
@@ -44,7 +44,7 @@
 
     <Button
         android:id="@+id/tabata"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/button_custom_selector_tabata"
         android:padding="16dp"
@@ -63,7 +63,7 @@
 
     <Button
         android:id="@+id/amrap"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="110dp"
         android:background="@drawable/button_custom_selector_amrap"
@@ -80,7 +80,7 @@
         app:layout_constraintVertical_bias="0.0"  />
     <Button
         android:id="@+id/fortime"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/button_custom_selector_fortime"
         android:padding="16dp"
@@ -120,7 +120,7 @@
 
     <TextView
         android:id="@+id/tvsimplywod"
-        android:layout_width="200dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:gravity="center"
@@ -150,7 +150,7 @@
 
     <TextView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:gravity="center"
@@ -168,7 +168,7 @@
 
     <ImageView
         android:id="@+id/menu_button"
-        android:layout_width="24dp"
+        android:layout_width="48dp"
         android:layout_height="24dp"
         android:contentDescription="Menu"
         android:src="@drawable/ic_menu"

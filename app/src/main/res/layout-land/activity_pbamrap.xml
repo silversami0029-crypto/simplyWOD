@@ -7,11 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".fitwod.pbamrap">
+    tools:context="com.bessadi.fitwod.pbamrap">
 
   <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
-        android:layout_width="399dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
@@ -25,7 +25,7 @@
 
     <ImageButton
         android:id="@+id/btnRecordVoice_amrap"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Record voice note"
@@ -38,7 +38,7 @@
 
     <ImageButton
         android:id="@+id/btnAdd_amrap"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:background="@android:color/transparent"
@@ -70,7 +70,7 @@
 
     <TextView
         android:id="@+id/tvcounterButton_amrap"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:background="@drawable/circular_shape"
         android:gravity="center"
@@ -86,7 +86,7 @@
 
     <ImageButton
         android:id="@+id/ib_reset_amrap"
-        android:layout_width="48dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="48dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/ib_desc"
@@ -102,7 +102,7 @@
 
     <ImageButton
         android:id="@+id/ib_back_amrap"
-        android:layout_width="62dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="55dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/ib_desc"
@@ -116,7 +116,7 @@
 
     <TextView
         android:id="@+id/tvTitle_amrap"
-        android:layout_width="209dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="40dp"
         android:gravity="center"
         android:text="@string/amrap"
@@ -177,7 +177,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="297dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="295dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +188,7 @@
 
         <ImageButton
             android:id="@+id/ibPlay_amrap"
-            android:layout_width="48dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
             android:baselineAligned="false"
@@ -206,7 +206,7 @@
 
         <TextView
             android:id="@+id/tvTimeLeft_amrap"
-            android:layout_width="170dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
 
             android:layout_marginBottom="120dp"
@@ -224,7 +224,7 @@
         <ProgressBar
             android:id="@+id/pbTimer_amrap"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="322dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="311dp"
             android:layout_marginEnd="1dp"
             android:background="@drawable/transparent_progressbar_background_stroke_amrap"

@@ -8,12 +8,12 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:background="@drawable/default_background"
-    tools:context=".fitwod.Menu_Activity">
+    tools:context="com.bessadi.fitwod.Menu_Activity">
 
     <!-- Header Section -->
     <ImageView
         android:id="@+id/menu_button"
-        android:layout_width="24dp"
+        android:layout_width="48dp"
         android:layout_height="24dp"
         android:contentDescription="Menu"
         android:src="@drawable/ic_menu"
@@ -52,7 +52,7 @@
     <!-- Buttons Section - Fixed constraints -->
     <Button
         android:id="@+id/amrap"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_custom_selector_amrap"
@@ -66,7 +66,7 @@
 
     <Button
         android:id="@+id/emom"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_custom_selector"
@@ -79,7 +79,7 @@
 
     <Button
         android:id="@+id/fortime"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_custom_selector_fortime"
@@ -93,7 +93,7 @@
 
     <Button
         android:id="@+id/tabata"
-        android:layout_width="253dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_custom_selector_tabata"

@@ -19,22 +19,22 @@
 
         <ImageButton
             android:id="@+id/btnClose"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_m"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:layout_marginEnd="20dp" />
 
         <ImageButton
             android:id="@+id/btnCapture"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_ml"
             android:src="@drawable/ic_camera_capture"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <View
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_m"
             android:layout_marginStart="20dp" />
 
     </LinearLayout>

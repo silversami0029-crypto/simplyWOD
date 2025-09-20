@@ -23,9 +23,9 @@
 
         <ImageView
             android:id="@+id/ivWorkoutType"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="1dp"
             android:src="@drawable/ic_tabata" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:padding="8dp"
             android:paddingVertical="14dp"
             android:paddingStart="1dp"
-            android:paddingEnd="1dp"
+            android:paddingEnd="2dp"
             android:textColor="@color/blue1"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -65,8 +65,8 @@
 
         <ImageButton
             android:id="@+id/btnPlayVoice"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_xxss"
             android:layout_marginStart="1dp"
             android:layout_marginBottom="1dp"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -77,8 +77,8 @@
             app:layout_constraintEnd_toEndOf="parent" />
         <ImageButton
             android:id="@+id/btnTakePhoto"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_xxss"
             android:layout_marginStart="1dp"
             android:layout_marginBottom="1dp"
             android:background="?attr/selectableItemBackgroundBorderless"

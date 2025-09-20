@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- For Android 10 and below -->
+    <!-- Optional: For Android 11 -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- For Android 13+ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- For selecting images from gallery (optional on newer Android versions) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" /> <!-- For Android 13+ -->
+
+
+    <application
+        android:allowBackup="true"
+        android:extractNativeLibs="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:gravity="center"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name="com.bessadi.fitwod.CameraXActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.DialogDefaultBackgroundsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.ChangeBackgroundActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.SubscriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.BillingActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.FragmentAchievementsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.CustomDatePickerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.LanguageSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name="com.bessadi.fitwod.FeatureRequestActivity"
+            android:exported="false"
+            android:label="@string/title_activity_request_feature"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
+        <activity
+            android:name="com.bessadi.fitwod.fragment_nutrition_dashboard"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.bessadi.fitwod.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider> <!-- Water reminder receiver -->
+        <activity
+            android:name="com.bessadi.fitwod.PerformanceAnalyticsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.popup_top_menu"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.calendar"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.workout_history_list"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.item_workout_history"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.pbemom"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.pbfortime"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.pbamrap"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.pbtabata"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+        <activity
+            android:name="com.bessadi.fitwod.Menu_Activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        -->
+        <!-- Sample AdMob app ID: ca-app-pub-5017806087809123~7144102588 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/banner_id" /> <!-- Google Pay meta-data -->
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+    </application>
+
+</manifest>
