@@ -4,35 +4,30 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 
-import com.bessadi.fitwod.R;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-public class AchievementsManager {
-    private SafeDatabaseHelper databaseHelper;
+
+public class AchievementsManager_backup_20250923 {
     private Context context;
     private SharedPreferences prefs;
     private WorkoutDbHelper dbHelper;
 
-    public AchievementsManager(Context context,  SafeDatabaseHelper databaseHelper) {
+    public AchievementsManager_backup_20250923(Context context) {
         this.context = context;
         this.prefs = context.getSharedPreferences("achievements_prefs", Context.MODE_PRIVATE);
-        this.databaseHelper = databaseHelper;
+        this.dbHelper = new WorkoutDbHelper(context);
     }
 
     public List<Achievement> getAchievements() {
         List<Achievement> achievements = new ArrayList<>();
 
         // Get actual user data from database
-
-        int totalWorkouts = databaseHelper.getWorkoutCount();
-        int workoutsWithPhotos = databaseHelper.getWorkoutsWithPhotoCount();
-        int workoutsWithVoice = databaseHelper.getWorkoutsWithVoiceCount();
+        int totalWorkouts = dbHelper.getWorkoutCount();
+        int workoutsWithPhotos = dbHelper.getWorkoutsWithPhotoCount();
+        int workoutsWithVoice = dbHelper.getWorkoutsWithVoiceCount();
         int consecutiveDays = calculateConsecutiveDays();
-        int uniqueWorkoutTypes = databaseHelper.getUniqueWorkoutTypesCount();
-
-
+        int uniqueWorkoutTypes = dbHelper.getUniqueWorkoutTypesCount();
 
         // Dynamic achievements based on actual progress
         achievements.add(createAchievement(1, "First Steps", "Complete your first workout",
@@ -84,7 +79,7 @@ public class AchievementsManager {
     }
 
     private int calculateConsecutiveDays() {
-        Cursor cursor = databaseHelper.getWorkoutDates();
+        Cursor cursor = dbHelper.getWorkoutDates();
         int consecutiveDays = 0;
 
         if (cursor != null && cursor.moveToFirst()) {

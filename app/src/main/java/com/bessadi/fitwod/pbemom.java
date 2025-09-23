@@ -107,10 +107,10 @@ public class pbemom extends AppCompatActivity {
         resetBtn = findViewById(R.id.ib_reset);
         goback = findViewById(R.id.ib_back_emom);
         playBtn = findViewById(R.id.ibPlay);
-        pauseBtn = findViewById(R.id.ibPause);
+       // pauseBtn = findViewById(R.id.ibPause);
         TextView addTimeTv = findViewById(R.id.tvAddTime);
         TextView timeLeftTv = findViewById(R.id.tvTimeLeft);
-        TextView resumeTv = findViewById(R.id.tvResume);
+        //TextView resumeTv = findViewById(R.id.tvResume);
         mplayer = MediaPlayer.create(pbemom.this, R.raw.let_go);
         wellDonePlayer = MediaPlayer.create(pbemom.this, R.raw.welldone);
         restplayer = MediaPlayer.create(pbemom.this, R.raw.rest);
@@ -142,7 +142,7 @@ public class pbemom extends AppCompatActivity {
                 else {goback_to_mainMenu();} // goes back to main menu
             }
         });
-        resumeTv.setOnClickListener(new View.OnClickListener() {
+       /* resumeTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //timeLeftInMillis = timeSelected * 1000 - timeProgress * 1000;
@@ -152,12 +152,12 @@ public class pbemom extends AppCompatActivity {
                 resumeTv.setVisibility(INVISIBLE);
                 timeLeftTv.setVisibility(VISIBLE);
                 timeLeftTv.setEnabled(true);
-                pauseBtn.setVisibility(INVISIBLE);
-                pauseBtn.setEnabled(false);
+                //pauseBtn.setVisibility(INVISIBLE);
+               // pauseBtn.setEnabled(false);
                 playBtn.setVisibility(INVISIBLE);
                 playBtn.setEnabled(false);
             }
-        });
+        });*/
 
         timeLeftTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,26 +165,19 @@ public class pbemom extends AppCompatActivity {
 
                     timeCountDown.cancel(); // pause the countdown
                     timerRunning = false;
-                    resumeTv.setEnabled(true);
-                    resumeTv.setVisibility(VISIBLE);
+                  //  resumeTv.setEnabled(true);
+                  //  resumeTv.setVisibility(VISIBLE);
                     timeLeftTv.setVisibility(INVISIBLE);
                     timeLeftTv.setEnabled(false);
-                    resumeTv.setText("RESUME");
+                  //  resumeTv.setText("RESUME");
                     timeCountDown.cancel();
 
             }
         });
 
 
-        pauseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             //   playBtnEnabled(); // hide pause button an show play button
-                timePause();
 
-                /*To make play button visible*/
-            }
-        });
+
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -369,9 +362,9 @@ public class pbemom extends AppCompatActivity {
 
         ProgressBar progressBar = findViewById(R.id.pbTimer);
         progressBar.setProgress(0);
-        TextView resumeTv = findViewById(R.id.tvResume);
-        resumeTv.setVisibility(INVISIBLE);
-        resumeTv.setEnabled(false);
+       // TextView resumeTv = findViewById(R.id.tvResume);
+       // resumeTv.setVisibility(INVISIBLE);
+       // resumeTv.setEnabled(false);
         TextView roundDisplay = findViewById(R.id.tvrounds);
         roundDisplay.setText("");
         playBtnEnabled();
@@ -399,11 +392,11 @@ public class pbemom extends AppCompatActivity {
 
         playBtnDisabled();
         timeLeftTv.setEnabled(true);
-        pauseBtn.setVisibility(INVISIBLE);
-        pauseBtn.setEnabled(false);
-        playBtn.setVisibility(INVISIBLE);
-        playBtn.setEnabled(false);
-        isPaused = false;
+       // pauseBtn.setVisibility(INVISIBLE);
+        //pauseBtn.setEnabled(false);
+        //playBtn.setVisibility(INVISIBLE);
+       // playBtn.setEnabled(false);
+       // isPaused = false;
         if (timeLeftInMillis == timeSelected)
         { playLetsGo();} // Play sound
         ProgressBar progressBar = findViewById(R.id.pbTimer);
@@ -457,7 +450,8 @@ public class pbemom extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(message);
-        builder.setIcon(getResources().getDrawable(R.drawable.logo));
+        builder.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+
         builder.setPositiveButton("OK", null);
 
         AlertDialog dialog = builder.create();
@@ -506,14 +500,12 @@ public class pbemom extends AppCompatActivity {
     private void playBtnDisabled() {
         playBtn.setEnabled(false);
         playBtn.setVisibility(INVISIBLE);
-        pauseBtn.setEnabled(true);
-        pauseBtn.setVisibility(VISIBLE);
+
     }
     private void playBtnEnabled() {
         playBtn.setEnabled(true);
         playBtn.setVisibility(VISIBLE);
-        pauseBtn.setEnabled(false);
-        pauseBtn.setVisibility(INVISIBLE);
+
     }
     /*play lets go sound function */
     private void updateTimerText() {
@@ -555,7 +547,7 @@ public class pbemom extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Confirm Exit")
                 .setMessage("Do you really want to exit?")
-                .setIcon(R.drawable.logo)
+                .setIcon(R.mipmap.ic_launcher)
                 .setPositiveButton("Yes", (dialogInterface, which) -> {
                     // Action when OK is clicked
                     finishActivity(0);

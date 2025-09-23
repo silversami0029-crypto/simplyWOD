@@ -417,7 +417,7 @@ public class pbfortime extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(message);
-        builder.setIcon(getResources().getDrawable(R.drawable.logo));
+        builder.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
         builder.setPositiveButton("OK", null);
 
         AlertDialog dialog = builder.create();
@@ -523,7 +523,7 @@ public class pbfortime extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Confirm Exit")
                 .setMessage("Do you really want to exit?")
-                .setIcon(R.drawable.logo)
+                .setIcon(R.mipmap.ic_launcher)
                 .setPositiveButton("Yes", (dialogInterface, which) -> {
                     // Action when OK is clicked
                     finishActivity(0);

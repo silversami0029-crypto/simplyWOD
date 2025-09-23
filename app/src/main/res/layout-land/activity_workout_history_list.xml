@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginVertical="1dp">
+
+
+    <HorizontalScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_m"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="2dp"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <!-- Buttons remain unchanged -->
+        <Button
+            android:id="@+id/btnFilterAll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_filler_selected"
+            android:ellipsize="end"
+            android:minWidth="70dp"
+            android:singleLine="true"
+            android:text="ALL"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+
+        <Button
+            android:id="@+id/btnFilterTabata"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_filler_selected"
+            android:ellipsize="end"
+            android:minWidth="70dp"
+            android:singleLine="true"
+            android:text="TABATA"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btnFilterForTime"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_filler_selected"
+            android:ellipsize="end"
+            android:minWidth="70dp"
+            android:singleLine="true"
+            android:text="TIME"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btnFilterEmom"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_filler_selected"
+            android:ellipsize="end"
+            android:minWidth="70dp"
+            android:singleLine="true"
+            android:text="EMOM"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btnFilterAmrap"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_filler_selected"
+            android:ellipsize="end"
+            android:minWidth="70dp"
+            android:singleLine="true"
+            android:text="AMRAP"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+    </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:id="@+id/linear_backup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ib_back_db"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/chip_background_color"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/search"
+            android:text="@string/search"
+            android:textColor="@color/black"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:id="@+id/btn_date_picker"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_xs"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/searchView"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/select_date"
+            android:src="@drawable/ic_calendar" />
+
+        <ImageButton
+            android:id="@+id/btn_backup"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_xs"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Backup data"
+            android:src="@drawable/ic_backup" />
+
+        <ImageButton
+            android:id="@+id/btn_export"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_xs"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Export logs"
+            android:src="@drawable/ic_export" />
+
+        <ImageButton
+            android:id="@+id/btn_add_photo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/add_photo"
+            android:visibility="gone"
+            android:src="@drawable/ic_add_photo" />
+
+        <ImageButton
+            android:id="@+id/btnRecordVoice"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_xs"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/add_photo"
+            android:src="@drawable/ic_voice_note" />
+
+        <ImageButton
+            android:id="@+id/btn_restore"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/restore_database"
+            android:src="@drawable/ic_restore" />
+
+        <ImageButton
+            android:id="@+id/ib_back_db"
+            android:layout_width="@dimen/width_xs"
+            android:layout_height="@dimen/height_xs"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back button"
+            android:src="@drawable/arrow_blue" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_xxxl"
+        android:layout_below="@id/linear_backup"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="08dp"
+        android:background="@color/white"
+        android:clipToPadding="false"
+        android:drawablePadding="16dp"
+        android:fontFamily="sans-serif-light"
+        android:padding="16dp"
+        android:paddingVertical="14dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/blue1"
+        android:textSize="12sp"
+        tools:listitem="@layout/activity_item_workout_history" />
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="43dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text=""
+        android:visibility="gone"
+        android:paddingStart="24dp"
+        android:paddingEnd="48dp"
+        android:paddingVertical="14dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:textSize="12sp"
+        android:textColor="@color/blue1"
+        android:fontFamily="sans-serif-light"
+        android:drawablePadding="16dp"/>
+</RelativeLayout>

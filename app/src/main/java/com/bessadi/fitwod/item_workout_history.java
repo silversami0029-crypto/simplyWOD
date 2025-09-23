@@ -248,6 +248,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Restore Options")
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(options, (dialog, which) -> {
                     switch (which) {
                         case 0: // "Restore from File"
@@ -298,6 +299,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Select Workout for Voice Note")
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(workoutNames, (dialog, which) -> {
                     currentWorkoutIdForVoice = workoutIds[which];
                     startRecording();
@@ -460,6 +462,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Backup Options")
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(options, (dialog, which) -> {
                     switch (which) {
                         case 0:
@@ -478,6 +481,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Export Options")
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(options, (dialog, which) -> {
                     switch (which) {
                         case 0:
@@ -715,6 +719,7 @@ public class item_workout_history extends AppCompatActivity {
 
     new AlertDialog.Builder(this)
             .setTitle("Add Photo to Workout")
+            .setIcon(R.mipmap.ic_launcher)
             .setItems(options, (dialog, which) -> {
         if (which == 0) {
             takePhoto();
@@ -901,6 +906,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Select Workout for Photo")
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(workoutNames, (dialog, which) -> {
                     currentWorkoutIdForPhoto = workoutIds[which];
                     launchCamera();
@@ -1359,6 +1365,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Select Voice Note to Play")
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(workoutNames, (dialog, which) -> {
                     playVoiceNote(workoutIds[which]);
                 })
@@ -1434,7 +1441,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Workout Options")
-                .setIcon(R.drawable.logo)
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(options, (dialog, which) -> handleOptionSelection(
                         position, workoutId, workoutData, options[which]))
                 .setNegativeButton("Cancel", null)
@@ -1525,7 +1532,7 @@ public class item_workout_history extends AppCompatActivity {
             photoView.setImageBitmap(bitmap);
             builder.setView(dialogView)
                     .setTitle("Workout Photo")
-                    .setIcon(R.drawable.logo)
+                    .setIcon(R.mipmap.ic_launcher)
                     .setPositiveButton("Close", null)
                     .show();
         } else {
@@ -1566,7 +1573,7 @@ public class item_workout_history extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Voice Note Options")
-                .setIcon(R.drawable.logo)
+                .setIcon(R.mipmap.ic_launcher)
                 .setItems(options, (dialog, which) -> {
                     switch (which) {
                         case 0: // Record New
@@ -1722,7 +1729,7 @@ public class item_workout_history extends AppCompatActivity {
     private void deleteVoiceNote(long workoutId) {
         new AlertDialog.Builder(this)
                 .setTitle("Delete Voice Note")
-                .setIcon(R.drawable.logo)
+                .setIcon(R.mipmap.ic_launcher)
                 .setMessage("Are you sure you want to delete this voice note?")
                 .setPositiveButton("Delete", (dialog, which) -> {
                     Cursor cursor = dbHelper.getWorkoutById(workoutId);
@@ -1755,7 +1762,7 @@ public class item_workout_history extends AppCompatActivity {
     private void deletePhoto(long workoutId) {
         new AlertDialog.Builder(this)
                 .setTitle("Delete Voice Note")
-                .setIcon(R.drawable.logo)
+                .setIcon(R.mipmap.ic_launcher)
                 .setMessage("Are you sure you want to delete this photo?")
                 .setPositiveButton("Delete", (dialog, which) -> {
                     Cursor cursor = dbHelper.getWorkoutById(workoutId);
@@ -1832,7 +1839,7 @@ public class item_workout_history extends AppCompatActivity {
             new AlertDialog.Builder(this)
                     .setTitle("Workout Details")
                     .setMessage(details.toString())
-                    .setIcon(R.drawable.logo)
+                    .setIcon(R.mipmap.ic_launcher)
                     .setPositiveButton("OK", null)
                     .setNeutralButton("View Photo", (dialog, which) -> {
                         Log.d("PHOTO_DEBUG", "View Photo button clicked");
@@ -1904,7 +1911,7 @@ public class item_workout_history extends AppCompatActivity {
                 photoView.setImageBitmap(bitmap);
                 builder.setView(dialogView)
                         .setTitle("Workout Photo")
-                        .setIcon(R.drawable.logo)
+                        .setIcon(R.mipmap.ic_launcher)
                         .setPositiveButton("Close", null)
                         .show();
             } else {
@@ -2204,6 +2211,7 @@ private void filterWorkouts(String query) {
         String cancel = getString(R.string.cancel);
         new AlertDialog.Builder(this)
                 .setTitle(dlt_msg_title)
+                .setIcon(R.mipmap.ic_launcher)
                 .setMessage(delete_Msg)
                 .setPositiveButton(dlt, (dialog, which) -> {
                     deleteWorkout(position, workoutId);

@@ -265,7 +265,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
                 photoView.setImageBitmap(bitmap);
                 builder.setView(dialogView)
                         .setTitle("Workout Photo")
-                        . setIcon(R.drawable.logo)
+                        . setIcon(R.mipmap.ic_launcher)
                         .setPositiveButton("Close", null)
                         .show();
             } else {

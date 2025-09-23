@@ -386,7 +386,7 @@ public class pbamrap extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(message);
-        builder.setIcon(R.drawable.logo); // This is the best way!
+        builder.setIcon(R.mipmap.ic_launcher); // This is the best way!
         builder.setPositiveButton("OK", null);
 
         AlertDialog dialog = builder.create();
@@ -550,7 +550,7 @@ public class pbamrap extends AppCompatActivity {
       AlertDialog dialog = new AlertDialog.Builder(this)
               .setTitle("Confirm Exit")
               .setMessage("Do you really want to exit?")
-              .setIcon(R.drawable.logo)
+              .setIcon(R.mipmap.ic_launcher)
               .setPositiveButton("Yes", (dialogInterface, which) -> {
                   // Action when OK is clicked
                   finishActivity(0);
