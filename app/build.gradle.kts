@@ -13,8 +13,8 @@ android {
         applicationId = "com.bessadi.fitwod"
         minSdk = 26
         targetSdk = 36
-        versionCode = 14
-        versionName = "14"
+        versionCode = 15
+        versionName = "15"
         multiDexEnabled = true
 
 
