@@ -25,5 +25,8 @@
     <dimen name="height_xxl">320dp</dimen>
     <dimen name="height_250">250dp</dimen>
     <dimen name="height_xxxl">590dp</dimen>
-
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">48dp</dimen>
+    <dimen name="app_bar_height">120dp</dimen>
+    <dimen name="button_width">150dp</dimen>
 </resources>

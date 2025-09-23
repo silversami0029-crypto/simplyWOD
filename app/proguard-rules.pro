@@ -1,21 +1,64 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# Basic ProGuard rules for your app
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Keep your application class
+-keep public class com.bessadi.fitwod.Application { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Keep all classes in your package
+-keep class com.bessadi.fitwod.** { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Keep Android components
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Fragment
+-keep public class * extends androidx.fragment.app.Fragment
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+
+# Keep View models
+-keep class * extends androidx.lifecycle.ViewModel { *; }
+
+# Keep database classes
+-keep class * extends android.database.sqlite.SQLiteOpenHelper { *; }
+
+# Keep parcelable classes
+-keep class * implements android.os.Parcelable { *; }
+
+# Keep serializable classes
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+# Keep annotations
+-keepattributes Annotation
+
+# Keep native methods
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+# Keep callback methods
+-keepclassmembers class * {
+    void on*(**);
+}
+
+# Third-party libraries
+-keep class com.google.android.gms.** { *; }
+-keep class com.google.firebase.** { *; }
+-keep class androidx.** { *; }
+-keep class com.github.bumptech.glide.** { *; }
+
+# Retrofit
+-keepattributes Signature
+-keepattributes Annotation
+-keep class com.squareup.okhttp.** { *; }
+-keep class retrofit.** { *; }
+-dontwarn com.squareup.okhttp.**
+-dontwarn retrofit.**
+-dontwarn org.codehaus.mojo.**

@@ -44,6 +44,7 @@ import android.widget.Toast;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,6 +53,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.ImageCapture;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -64,6 +66,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bessadi.fitwod.R;
 
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.chip.ChipGroup;
 import java.io.File;
 import java.lang.reflect.Field;
@@ -76,6 +79,10 @@ import java.util.Set;
 
 public class item_workout_history extends AppCompatActivity {
     private WorkoutDbHelper dbHelper;
+
+    private long currentWorkoutIdForPhoto = -1;
+    private File photoFile;
+    private ImageCapture imageCapture;
     private PremiumManager premiumManager;
     private SharedPreferences prefs;
     private WorkoutAdapter adapter;
@@ -99,6 +106,11 @@ public class item_workout_history extends AppCompatActivity {
     private static final int REQUEST_PICK_IMAGE = 2;
     private static final int REQUEST_RESTORE_BACKUP = 3;
 
+    // Request codes
+    private static final int PICK_IMAGE_REQUEST = 1001; // For Photo Picker
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 1002;
+    private static final int CAMERA_CAPTURE_REQUEST = 1003;
+
     private static final int REQUEST_CAMERAX_CAPTURE = 102;
     private static final int PERMISSION_REQUEST_CODE = 1001;
     private static final int PERMISSION_REQUEST_GALLERY = 103;
@@ -107,7 +119,6 @@ public class item_workout_history extends AppCompatActivity {
     private long currentWorkoutIdForVoice = -1;
     private String voiceNotePath;
 
-    private long currentWorkoutIdForPhoto = -1;
     private String currentPhotoPath;
     private Uri currentImageUri; //
     private MediaPlayer currentMediaPlayer; // Add this class variable
@@ -712,21 +723,7 @@ public class item_workout_history extends AppCompatActivity {
             Toast.makeText(this, "JSON export failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
-    /*@Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == 100) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d("CHECK_PERMISSION", "Storage permission granted!");
-                // Retry the operation that required permission
-                retryBackupOrExport();
-            } else {
-                Log.d("CHECK_PERMISSION", "Storage permission denied");
-                Toast.makeText(this, "Storage permission is required for backup/export", Toast.LENGTH_LONG).show();
-            }
-        }
-    }*/
 
     private void retryBackupOrExport() {
         // You can implement logic to remember what operation was requested
@@ -795,18 +792,81 @@ public class item_workout_history extends AppCompatActivity {
             .show();
 
 }
+
     private void takePhoto() {
+        Log.d("DEBUG_TAKEPHOTO", "takePhoto() called");
+        Log.d("DEBUG_TAKEPHOTO", "currentWorkoutIdForPhoto: " + currentWorkoutIdForPhoto);
+
         if (currentWorkoutIdForPhoto == -1) {
             Toast.makeText(this, "Please select a workout first", Toast.LENGTH_SHORT).show();
+            Log.d("DEBUG_TAKEPHOTO", "No workout selected - exiting");
             return;
         }
 
+        // Debug camera permissions
+        boolean hasCameraPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED;
+
+        boolean hasStoragePermission = true;
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) { // Android 9 and below
+            hasStoragePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED;
+        }
+
+        Log.d("DEBUG_TAKEPHOTO", "Camera permission granted: " + hasCameraPermission);
+        Log.d("DEBUG_TAKEPHOTO", "Storage permission granted: " + hasStoragePermission);
+        Log.d("DEBUG_TAKEPHOTO", "Android version: " + Build.VERSION.SDK_INT);
+
         if (checkCameraPermissions()) {
-            launchCameraX();
+            Log.d("DEBUG_TAKEPHOTO", "Permissions OK - launching camera");
+            launchCamera();
         } else {
+            Log.d("DEBUG_TAKEPHOTO", "Requesting camera permissions");
             requestCameraPermissions();
         }
     }
+
+    // Add detailed debugging to your permission check method
+    private boolean checkCameraPermissions() {
+        boolean hasCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED;
+
+        boolean hasStorage = true;
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            hasStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED;
+        }
+
+        Log.d("DEBUG_PERMISSIONS", "checkCameraPermissions() - Camera: " + hasCamera + ", Storage: " + hasStorage);
+        return hasCamera && hasStorage;
+    }
+
+    // Add debugging to permission result handler
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        Log.d("DEBUG_PERMISSIONS", "onRequestPermissionsResult called");
+        Log.d("DEBUG_PERMISSIONS", "Request code: " + requestCode);
+        Log.d("DEBUG_PERMISSIONS", "Permissions length: " + permissions.length);
+
+        for (int i = 0; i < permissions.length; i++) {
+            Log.d("DEBUG_PERMISSIONS", "Permission: " + permissions[i] + " - Result: " + grantResults[i]);
+        }
+
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("DEBUG_PERMISSIONS", "Camera permission GRANTED - launching camera");
+                launchCamera();
+            } else {
+                Log.d("DEBUG_PERMISSIONS", "Camera permission DENIED");
+                Toast.makeText(this, "Camera permission is required to take photos", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
     private void launchCameraX() {
         try {
             Intent cameraIntent = new Intent(this, CameraXActivity.class);
@@ -842,6 +902,7 @@ public class item_workout_history extends AppCompatActivity {
                     PERMISSION_REQUEST_CODE);
         }
     }
+    /*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -861,74 +922,9 @@ public class item_workout_history extends AppCompatActivity {
                 Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-   /* private void takePhoto() {
-        Log.d("PHOTO_DEBUG", "=== takePhoto() called ===");
-        Log.d("PHOTO_DEBUG", "currentWorkoutIdForPhoto: " + currentWorkoutIdForPhoto);
-
-        if (currentWorkoutIdForPhoto == -1) {
-            Toast.makeText(this, "Please select a workout first", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Intent cameraIntent = new Intent(this, CameraXActivity.class);
-        cameraIntent.putExtra("workoutId", currentWorkoutIdForPhoto);
-        startActivityForResult(cameraIntent, REQUEST_CAMERAX_CAPTURE);
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            Log.d("PHOTO_DEBUG", "Starting camera activity without EXTRA_OUTPUT");
-
-            // REMOVE the EXTRA_OUTPUT logic - let camera app handle storage
-            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-
-        } else {
-            Log.d("PHOTO_DEBUG", "No camera app found");
-            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show();
-        }
     }*/
 
-   /* private void takePhoto() {
-        Log.d("PHOTO_DEBUG", "=== takePhoto() called ===");
-        Log.d("PHOTO_DEBUG", "currentWorkoutIdForPhoto: " + currentWorkoutIdForPhoto);
-        Log.d("PHOTO_DEBUG", "currentImagePath: " + currentPhotoPath);
 
-        // No need to select workout - use the already selected one
-        if (currentWorkoutIdForPhoto == -1) {
-            Log.d("PHOTO_DEBUG", "ERROR: No workout selected");
-            Toast.makeText(this, "Please select a workout first", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            Log.d("PHOTO_DEBUG", "Camera app available");
-
-            File photoFile = createImageFile();
-            Log.d("PHOTO_DEBUG", "createImageFile() returned: " + (photoFile != null ? photoFile.getAbsolutePath() : "NULL"));
-
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        getPackageName() + ".provider", photoFile);
-                Log.d("PHOTO_DEBUG", "Photo URI: " + photoURI);
-
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-
-                // Add permission flags
-                takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                Log.d("PHOTO_DEBUG", "Starting camera activity...");
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            } else {
-                Log.d("PHOTO_DEBUG", "ERROR: Failed to create image file");
-                Toast.makeText(this, "Error creating image file", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Log.d("PHOTO_DEBUG", "ERROR: No camera app found");
-            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show();
-        }
-    }*/
 
     private void showWorkoutSelectionDialog() {
         // Get all workouts for selection
@@ -974,6 +970,48 @@ public class item_workout_history extends AppCompatActivity {
                 .setNegativeButton("Cancel", null)
                 .show();
     }
+
+    private void launchCamera() {
+        Log.d("DEBUG_CAMERA", "launchCamera() called");
+
+        try {
+            // Create temporary file for camera photo
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+            String photoFileName = "JPEG_" + timeStamp + "_";
+            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+            Log.d("DEBUG_CAMERA", "Storage directory: " + storageDir);
+
+            photoFile = File.createTempFile(photoFileName, ".jpg", storageDir);
+            Log.d("DEBUG_CAMERA", "Photo file created: " + photoFile.getAbsolutePath());
+
+            // Create camera intent
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            // Ensure there's a camera app to handle the intent
+            if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+                Log.d("DEBUG_CAMERA", "Camera app available");
+
+                // Add the photo file to the intent
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.bessadi.fitwod.fileprovider",
+                        photoFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+                Log.d("DEBUG_CAMERA", "Starting camera with URI: " + photoURI);
+                startActivityForResult(cameraIntent, CAMERA_CAPTURE_REQUEST);
+            } else {
+                Log.e("DEBUG_CAMERA", "No camera app available");
+                Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            Log.e("DEBUG_CAMERA", "Error launching camera: " + e.getMessage(), e);
+            Toast.makeText(this, "Camera error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+    /*
     private void launchCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -992,32 +1030,89 @@ public class item_workout_history extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
-    }
+    }*/
+
+
+
+
+/*
+    private void chooseFromGallery() {
+        Log.d("DEBUG_GALLERY", "chooseFromGallery() called");
+        Log.d("DEBUG_GALLERY", "currentWorkoutIdForPhoto: " + currentWorkoutIdForPhoto);
+
+        if (currentWorkoutIdForPhoto == -1) {
+            Toast.makeText(this, "Please select a workout first", Toast.LENGTH_SHORT).show();
+            Log.d("DEBUG_GALLERY", "No workout selected - exiting");
+            return;
+        }
+
+        try {
+            Log.d("DEBUG_GALLERY", "Attempting to open Photo Picker");
+            Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+            intent.setType("image/*");
+            Log.d("DEBUG_GALLERY", "Intent created: " + intent.toString());
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+            Log.d("DEBUG_GALLERY", "Activity started successfully");
+        } catch (Exception e) {
+            Log.e("DEBUG_GALLERY", "Error with Photo Picker: " + e.getMessage(), e);
+            Log.d("DEBUG_GALLERY", "Trying fallback method");
+
+            try {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                Log.d("DEBUG_GALLERY", "Fallback method started");
+            } catch (Exception ex) {
+                Log.e("DEBUG_GALLERY", "Fallback also failed: " + ex.getMessage(), ex);
+                Toast.makeText(this, "Cannot open gallery: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }*/
 
     private void chooseFromGallery() {
+        Log.d("DEBUG_GALLERY", "chooseFromGallery() called");
+        Log.d("DEBUG_GALLERY", "currentWorkoutIdForPhoto: " + currentWorkoutIdForPhoto);
+
         if (currentWorkoutIdForPhoto == -1) {
             Toast.makeText(this, "Please select a workout first", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Check for permission based on Android version
-        if (checkGalleryPermission()) {
-            openGallery();
-        } else {
-            requestGalleryPermission();
+        // Skip Photo Picker on Android 10 and below - use fallback directly
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { // Android 11+
+            try {
+                Log.d("DEBUG_GALLERY", "Using Photo Picker (Android 11+)");
+                Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_IMAGE_REQUEST);
+                return;
+            } catch (Exception e) {
+                Log.e("DEBUG_GALLERY", "Photo Picker failed: " + e.getMessage());
+            }
+        }
+
+        // Use fallback for Android 10 and below
+        Log.d("DEBUG_GALLERY", "Using fallback method (Android 10 and below)");
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+
+    private void openPhotoPicker() {
+        try {
+            // Use Android Photo Picker (Android 13+)
+            Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+            intent.setType("image/*");
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        } catch (Exception e) {
+            // Fallback for older devices
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
         }
     }
-    private boolean checkGalleryPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13+ - Use READ_MEDIA_IMAGES
-            return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
-                    == PackageManager.PERMISSION_GRANTED;
-        } else {
-            // Android 12 and below - Use READ_EXTERNAL_STORAGE
-            return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED;
-        }
-    }
+
 
     private void requestGalleryPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -1033,23 +1128,8 @@ public class item_workout_history extends AppCompatActivity {
         }
     }
 
-    private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, REQUEST_PICK_IMAGE);
-    }
-  /*  private void chooseFromGallery() {
-        // No need to select workout - use the already selected one
-        if (currentWorkoutIdForPhoto == -1) {
-            Toast.makeText(this, "Please select a workout first", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, REQUEST_PICK_IMAGE);
-    }*/
+
+
     private File createImageFile() {
         try {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
@@ -1141,6 +1221,357 @@ public class item_workout_history extends AppCompatActivity {
         Log.d("GALLERY_DEBUG", "URI: " + uri + " -> Path: " + path);
         return path;
     }
+    /*
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PICK_IMAGE_REQUEST: // Photo Picker result
+                    if (data != null && data.getData() != null) {
+                        Uri selectedImageUri = data.getData();
+                        handleSelectedImageFromGallery(selectedImageUri);
+                    }
+                    break;
+
+                case CAMERA_CAPTURE_REQUEST: // Your existing camera handling
+                    handleCameraImage();
+                    break;
+            }
+        }
+    }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("DEBUG_ACTIVITY_RESULT", "onActivityResult called");
+        Log.d("DEBUG_ACTIVITY_RESULT", "Request code: " + requestCode + ", Result code: " + resultCode);
+
+        if (resultCode == RESULT_OK) {
+            Log.d("DEBUG_ACTIVITY_RESULT", "Result OK");
+
+            switch (requestCode) {
+                case PICK_IMAGE_REQUEST:
+                    Log.d("DEBUG_ACTIVITY_RESULT", "Processing gallery photo");
+                    if (data != null) {
+                        Uri selectedImageUri = data.getData();
+                        Log.d("DEBUG_ACTIVITY_RESULT", "Gallery URI: " + selectedImageUri);
+
+                        if (selectedImageUri != null) {
+                            Log.d("DEBUG_ACTIVITY_RESULT", "URI scheme: " + selectedImageUri.getScheme());
+                            Log.d("DEBUG_ACTIVITY_RESULT", "URI path: " + selectedImageUri.getPath());
+                            handleSelectedImageFromGallery(selectedImageUri);
+                        } else {
+                            Log.e("DEBUG_ACTIVITY_RESULT", "Selected image URI is null");
+                        }
+                    } else {
+                        Log.e("DEBUG_ACTIVITY_RESULT", "Data intent is null");
+                    }
+                    break;
+
+                case CAMERA_CAPTURE_REQUEST:
+                    Log.d("DEBUG_ACTIVITY_RESULT", "Processing camera photo");
+                    if (photoFile != null) {
+                        Log.d("DEBUG_ACTIVITY_RESULT", "Photo file exists: " + photoFile.exists());
+                        Log.d("DEBUG_ACTIVITY_RESULT", "Photo file path: " + photoFile.getAbsolutePath());
+                        Log.d("DEBUG_ACTIVITY_RESULT", "Photo file size: " + (photoFile.exists() ? photoFile.length() : 0));
+                        handleCameraImage();
+                    } else {
+                        Log.e("DEBUG_ACTIVITY_RESULT", "Photo file is null");
+                    }
+                    break;
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Log.d("DEBUG_ACTIVITY_RESULT", "User cancelled the operation");
+        } else {
+            Log.d("DEBUG_ACTIVITY_RESULT", "Unexpected result code: " + resultCode);
+        }
+    }
+
+
+    // Add this method to refresh your RecyclerView
+    private void refreshWorkoutList() {
+        if (adapter != null) {
+            // Get fresh data from database
+            Cursor newCursor = dbHelper.getAllWorkouts();
+            adapter.swapCursor(newCursor);
+        }
+    }
+
+
+    /*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PICK_IMAGE_REQUEST: // Gallery photo selected
+                    if (data != null) {
+                        Uri selectedImageUri = data.getData();
+                        if (selectedImageUri != null) {
+                            handleSelectedGalleryImage(selectedImageUri);
+                        }
+                    }
+                    break;
+
+                case CAMERA_CAPTURE_REQUEST: // Camera photo taken
+                    // Your existing camera result handling
+                    handleCameraImage();
+                    break;
+            }
+        }
+    }*/
+    // NEW: Handle image from Photo Picker
+
+    private String saveImageToAppStorage(Uri imageUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            if (inputStream == null) return null;
+
+            // Create file in app's internal storage
+            String fileName = "workout_photo_" + currentWorkoutIdForPhoto + "_" + System.currentTimeMillis() + ".jpg";
+            File imageFile = new File(getFilesDir(), fileName);
+
+            // Copy image
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            return imageFile.getAbsolutePath();
+
+        } catch (Exception e) {
+            Log.e("ImageSave", "Error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    // Handle camera image (you mentioned this was missing)
+
+
+
+    private void handleCameraImage() {
+        if (currentWorkoutIdForPhoto == -1 || photoFile == null || !photoFile.exists()) {
+            Toast.makeText(this, "No photo captured", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            String savedImagePath = saveImageToAppStorage(Uri.fromFile(photoFile));
+            if (savedImagePath != null) {
+                boolean success = dbHelper.updateWorkoutPhoto(currentWorkoutIdForPhoto, savedImagePath);
+                if (success) {
+                    Toast.makeText(this, "Photo added to workout", Toast.LENGTH_SHORT).show();
+                    refreshAdapter();
+                }
+            }
+
+            // Cleanup
+            if (photoFile.exists()) {
+                photoFile.delete();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error processing photo", Toast.LENGTH_SHORT).show();
+        }
+    }
+/*
+    private void refreshAdapter() {
+        try {
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            if (recyclerView != null && recyclerView.getAdapter() != null) {
+                WorkoutAdapter adapter = (WorkoutAdapter) recyclerView.getAdapter();
+
+                // Get fresh data from database
+                Cursor newCursor = dbHelper.getAllWorkouts();
+
+                // Update the adapter with new data
+                adapter.swapCursor(newCursor);
+
+                Log.d("Refresh", "Adapter refreshed successfully");
+            } else {
+                Log.e("Refresh", "RecyclerView or adapter is null");
+            }
+        } catch (Exception e) {
+            Log.e("Refresh", "Error refreshing adapter: " + e.getMessage());
+        }
+    }*/
+/*
+    private void handleSelectedImageFromGallery(Uri imageUri) {
+        if (currentWorkoutIdForPhoto == -1) return;
+
+        try {
+            // Save image to app's internal storage (no permissions needed)
+            String savedImagePath = saveImageToInternalStorage(imageUri);
+
+            if (savedImagePath != null) {
+                // Update workout in database
+                boolean success = dbHelper.updateWorkoutPhoto(currentWorkoutIdForPhoto, savedImagePath);
+
+                if (success) {
+                    Toast.makeText(this, "Photo added to workout", Toast.LENGTH_SHORT).show();
+                    // Refresh your RecyclerView using the correct method
+                    refreshWorkoutList();
+                } else {
+                    Toast.makeText(this, "Failed to save photo", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error processing image", Toast.LENGTH_SHORT).show();
+            Log.e("PhotoPicker", "Error: " + e.getMessage());
+        }
+    }*/
+
+    // Add this method to refresh your RecyclerView
+
+    private void refreshAdapter() {
+        Log.d("DEBUG_REFRESH", "refreshAdapter called");
+
+        try {
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            Log.d("DEBUG_REFRESH", "RecyclerView: " + (recyclerView != null ? "found" : "null"));
+
+            if (recyclerView != null && recyclerView.getAdapter() != null) {
+                Log.d("DEBUG_REFRESH", "Adapter found, getting fresh data");
+                Cursor newCursor = dbHelper.getAllWorkouts();
+                Log.d("DEBUG_REFRESH", "New cursor has " + (newCursor != null ? newCursor.getCount() : 0) + " items");
+
+                WorkoutAdapter adapter = (WorkoutAdapter) recyclerView.getAdapter();
+                adapter.swapCursor(newCursor);
+                Log.d("DEBUG_REFRESH", "Adapter refreshed successfully");
+            } else {
+                Log.e("DEBUG_REFRESH", "RecyclerView or adapter is null");
+            }
+        } catch (Exception e) {
+            Log.e("DEBUG_REFRESH", "Error refreshing adapter: " + e.getMessage(), e);
+        }
+    }
+    private void handleSelectedImageFromGallery(Uri imageUri) {
+        Log.d("DEBUG_IMAGE_HANDLING", "handleSelectedImageFromGallery called");
+        Log.d("DEBUG_IMAGE_HANDLING", "URI: " + imageUri);
+        Log.d("DEBUG_IMAGE_HANDLING", "Workout ID: " + currentWorkoutIdForPhoto);
+
+        if (currentWorkoutIdForPhoto == -1) {
+            Log.e("DEBUG_IMAGE_HANDLING", "No workout ID selected");
+            return;
+        }
+
+        try {
+            Log.d("DEBUG_IMAGE_HANDLING", "Attempting to save image to internal storage");
+            String savedImagePath = saveImageToInternalStorage(imageUri);
+            Log.d("DEBUG_IMAGE_HANDLING", "Saved image path: " + savedImagePath);
+
+            if (savedImagePath != null) {
+                Log.d("DEBUG_IMAGE_HANDLING", "Updating database with photo path");
+                boolean success = dbHelper.updateWorkoutPhoto(currentWorkoutIdForPhoto, savedImagePath);
+                Log.d("DEBUG_IMAGE_HANDLING", "Database update success: " + success);
+
+                if (success) {
+                    Toast.makeText(this, "Photo added to workout", Toast.LENGTH_SHORT).show();
+                    Log.d("DEBUG_IMAGE_HANDLING", "Refreshing adapter");
+                    refreshAdapter();
+
+                    // Debug: Check if the photo is actually in the database
+                    Cursor cursor = dbHelper.getWorkoutById(currentWorkoutIdForPhoto);
+                    if (cursor != null && cursor.moveToFirst()) {
+                        String dbPhotoPath = cursor.getString(cursor.getColumnIndexOrThrow(WorkoutDbHelper.COLUMN_VIDEO_NOTE));
+                        Log.d("DEBUG_IMAGE_HANDLING", "Photo path in database: " + dbPhotoPath);
+                        cursor.close();
+                    }
+                } else {
+                    Toast.makeText(this, "Failed to save photo to database", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Log.e("DEBUG_IMAGE_HANDLING", "Failed to save image to storage");
+                Toast.makeText(this, "Failed to process image", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Log.e("DEBUG_IMAGE_HANDLING", "Error handling image: " + e.getMessage(), e);
+            Toast.makeText(this, "Error processing image: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private String saveImageToInternalStorage(Uri imageUri) {
+        Log.d("DEBUG_IMAGE_SAVE", "saveImageToInternalStorage called");
+        Log.d("DEBUG_IMAGE_SAVE", "Input URI: " + imageUri);
+
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            Log.d("DEBUG_IMAGE_SAVE", "Input stream: " + (inputStream != null ? "not null" : "null"));
+
+            if (inputStream == null) {
+                Log.e("DEBUG_IMAGE_SAVE", "Cannot open input stream for URI");
+                return null;
+            }
+
+            String fileName = "workout_photo_" + currentWorkoutIdForPhoto + "_" + System.currentTimeMillis() + ".jpg";
+            File imageFile = new File(getFilesDir(), fileName);
+            Log.d("DEBUG_IMAGE_SAVE", "Target file: " + imageFile.getAbsolutePath());
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            byte[] buffer = new byte[1024];
+            int length;
+            long totalBytes = 0;
+
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+                totalBytes += length;
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            Log.d("DEBUG_IMAGE_SAVE", "Image saved successfully. Size: " + totalBytes + " bytes");
+            Log.d("DEBUG_IMAGE_SAVE", "File exists: " + imageFile.exists());
+            Log.d("DEBUG_IMAGE_SAVE", "File size: " + imageFile.length() + " bytes");
+
+            return imageFile.getAbsolutePath();
+
+        } catch (Exception e) {
+            Log.e("DEBUG_IMAGE_SAVE", "Error saving image: " + e.getMessage(), e);
+            return null;
+        }
+    }
+
+    private String saveCameraImageToInternalStorage(File cameraFile) {
+        try {
+            // Create a permanent file in your app's internal storage
+            String fileName = "workout_photo_" + currentWorkoutIdForPhoto + "_" + System.currentTimeMillis() + ".jpg";
+            File internalFile = new File(getFilesDir(), fileName);
+
+            // Copy the camera file to internal storage
+            FileInputStream inputStream = new FileInputStream(cameraFile);
+            FileOutputStream outputStream = new FileOutputStream(internalFile);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            return internalFile.getAbsolutePath();
+
+        } catch (Exception e) {
+            Log.e("CameraImageSave", "Error saving camera image: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
+
+
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -1224,7 +1655,7 @@ public class item_workout_history extends AppCompatActivity {
 
         // Reset selection
         currentWorkoutIdForPhoto = -1;
-    }
+    }*/
     private void restoreDatabaseFromBackup(Uri backupUri) {
         try {
             // Get the backup file
@@ -1464,10 +1895,6 @@ public class item_workout_history extends AppCompatActivity {
         showOptionsDialog(position, workoutId, workoutData, optionsList);
     }
 
-   // private void refreshAdapter() {
-       // adapter.swapCursor(dbHelper.getAllWorkouts());
-   // }
-
 
     private WorkoutData getWorkoutData(long workoutId) {
         Cursor cursor = null;
@@ -1562,17 +1989,7 @@ public class item_workout_history extends AppCompatActivity {
         }
     }
 
-    private boolean checkCameraPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13+ - need READ_MEDIA_IMAGES instead of storage permissions
-            return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED;
-        } else {
-            // Android 12 and below
-            return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-        }
-    }
+
 
 
 

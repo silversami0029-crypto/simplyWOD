@@ -87,22 +87,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         }
         notifyDataSetChanged(); // This will refresh ALL items
     }
-    /*public void swapCursor(Cursor newCursor) {
-        if (cursor != null) {
-            cursor.close();
-        }
-        cursor = newCursor;
-        if (newCursor != null) {
-            Log.d("ADAPTER_DEBUG","New cursor with " + newCursor.getCount() + "items");
-            //mIdIndex = newCursor.getColumnIndexOrThrow(WorkoutDbHelper.COLUMN_ID);
-            //mNameIndex = newCursor.getColumnIndexOrThrow(WorkoutDbHelper.COLUMN_WORK_TYPE);
-            notifyDataSetChanged();
-        } else{
-            Log.d("ADAPTER_DEBUG","Cursor is null");
-        }
 
-
-    }*/
 
 
     @Override
@@ -142,7 +127,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         } catch (IllegalArgumentException e) {
             Log.e("ADAPTER_ERROR", "Column not found in cursor", e);
         } catch (Exception e) {
-            Log.e("ADAPTER_ERROR", "Error binding view holder", e);
+            Log.e("ADAPTER_ERROR", "Error binding view holder: "+ e.getMessage(), e);
         }
 
     }
@@ -182,6 +167,31 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
                              String voicePath, String photoPath) {
           //  String voiceNote = cursor.getString(cursor.getColumnIndexOrThrow(WorkoutDbHelper.COLUMN_VOICE_NOTE));
             // Set workout parameters and image
+            Log.d("VIEWHOLDER_DEBUG", "bindData() - Photo path: " + photoPath);
+            Log.d("VIEWHOLDER_DEBUG", "bindData() - Photo path not empty: " + (photoPath != null && !photoPath.isEmpty()));
+            // Handle photos
+            if (photoPath != null && !photoPath.isEmpty()) {
+                Log.d("VIEWHOLDER_DEBUG", "Setting photo button VISIBLE");
+                btnTakePhoto.setVisibility(VISIBLE);
+                btnTakePhoto.setImageResource(R.drawable.ic_photo);
+
+                // Test if file actually exists and is readable
+                File photoFile = new File(photoPath);
+                Log.d("VIEWHOLDER_DEBUG", "Photo file exists: " + photoFile.exists());
+                Log.d("VIEWHOLDER_DEBUG", "Photo file readable: " + photoFile.canRead());
+                Log.d("VIEWHOLDER_DEBUG", "Photo file size: " + photoFile.length());
+
+                btnTakePhoto.setOnClickListener(v -> {
+                    Log.d("VIEWHOLDER_DEBUG", "Photo button clicked for path: " + photoPath);
+                    openPhoto(photoPath);
+                });
+            } else {
+                Log.d("VIEWHOLDER_DEBUG", "Setting photo button GONE");
+                btnTakePhoto.setVisibility(GONE);
+                btnTakePhoto.setOnClickListener(null);
+            }
+
+
             if ("TABATA".equals(workType)) {
                 tvParams.setText(String.format(Locale.getDefault(),
                         workType + ": %dmin / %ds/ %ds", rounds, work, rest));
