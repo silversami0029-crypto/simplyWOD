@@ -64,10 +64,10 @@
     <string name="change_language">Changer de langue</string>
     <string name="duration">ajouter du temps</string>
     <string name="reset">réinitialiser</string>
-    <string name="round_counter">compteur rond</string>
+    <string name="round_counter">compteur</string>
     <string name="longest_session">Plus longue session</string>
     <string name="emom">EMOM</string>
-    <string name="fourtime">FOR TIME</string>
+    <string name="for_time">FOR TIME</string>
     <string name="work">Travail (en sec)</string>
     <string name="rest">Repos (en sec)</string>
     <string name="request_features">Demander des fonctionnalités</string>

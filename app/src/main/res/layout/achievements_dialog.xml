@@ -4,9 +4,13 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:padding="16dp"
     android:background="?android:attr/colorBackground">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/tvProgress"
         android:layout_width="match_parent"
@@ -18,21 +22,30 @@
         android:layout_marginBottom="16dp"
         android:textColor="?android:attr/textColorPrimary" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAchievements"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="8dp"
-      />
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCloseAchievements"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/height_m"
         android:text="Close"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         style="@style/Widget.FitWOD.Button.Material"
         android:theme="@style/Theme.FitWOD"
         app:backgroundTint="?attr/colorPrimaryDark"/>
-
+    </LinearLayout>
 </LinearLayout>

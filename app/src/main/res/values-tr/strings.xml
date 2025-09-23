@@ -10,7 +10,7 @@
     <string name="starttime">00</string>
     <string name="tabata_starttime">00</string>
     <string name="tabata_rounds">00</string>
-    <string name="fourtime">FOR TIME</string>
+    <string name="for_time">FOR TIME</string>
     <string name="select_time">00</string>
     <string name="minutes">dakikalar</string>
     <string name="timer">Zamanlayıcı</string>

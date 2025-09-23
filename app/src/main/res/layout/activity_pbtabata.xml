@@ -3,211 +3,230 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout_tabata"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     tools:context="com.bessadi.fitwod.pbtabata">
 
+    <!-- Timer Circle (Centered, responsive) -->
+    <FrameLayout
+        android:id="@+id/flTimer_tb"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintDimensionRatio="1:1">
 
-     <!-- <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="399dp"
-            android:layout_height="54dp"
-            android:layout_alignParentBottom="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_id_1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.950"
-            android:visibility="gone"/>-->
+        <ProgressBar
+            android:id="@+id/pbTimer_tb"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/transparent_progressbar_background_stroke_tabata"
+            android:indeterminate="false"
+            android:progress="0"
+            android:progressDrawable="@drawable/blue_progressbar_background"
+            android:rotation="-90"/>
 
-        <FrameLayout
-            android:id="@+id/flTimer_tb"
-            android:layout_width="327dp"
-            android:layout_height="309dp"
-            app:flow_firstVerticalBias="0.308"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                <ProgressBar
-                    android:id="@+id/pbTimer_tb"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="@dimen/width_xl"
-                    android:layout_height="@dimen/height_xl"
-                    android:layout_gravity="center"
-                    android:background="@drawable/transparent_progressbar_background_stroke_tabata"
-                    android:indeterminate="false"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/blue_progressbar_background"
-                    android:rotation="-90">
-                </ProgressBar>
+            <ImageButton
+                android:id="@+id/ibPlay_tb"
+                android:layout_width="@dimen/width_xxs"
+                android:layout_height="@dimen/height_xxs"
+                android:background="@android:color/transparent"
+                android:contentDescription="Play/Pause"
+                android:scaleType="fitXY"
+                android:src="@drawable/play_orange"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.197" />
 
-                <!--<LinearLayout-->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tvTimeLeft_tb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/min_sec"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageButton
-                            android:id="@+id/ibPlay_tb"
-                            android:layout_width="@dimen/width_xs"
-                            android:layout_height="@dimen/height_xs"
-                            android:background="@android:color/transparent"
-                            android:baselineAligned="false"
-                            android:contentDescription="FFF"
-                            android:gravity="center"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/play_orange"
-                            android:visibility="visible"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.167" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
-                        <TextView
-                            android:id="@+id/tvTimeLeft_tb"
-                            android:layout_width="@dimen/width_ml"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/min_sec"
-                            android:textColor="@color/white"
-                            android:textSize="40sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+    <!-- Rounds Display -->
+    <TextView
+        android:id="@+id/tvrounds_tb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flTimer_tb"/>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Title -->
 
-                <!--</LinearLayout>-->
-        </FrameLayout>
+    <!-- Back Button -->
 
+    <!-- Control Buttons Row -->
 
-        <!-- Voice Recording Button -->
+    <TextView
+        android:id="@+id/tvTitle_tb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tabata"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/flTimer_tb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.658" />
 
-        <ImageButton
-            android:id="@+id/btnAdd_tb"
-            android:layout_width="@dimen/width_xs"
-            android:layout_height="@dimen/height_xs"
-            android:background="@android:color/transparent"
-            android:contentDescription="FFF"
-            android:scaleType="fitXY"
-            android:src="@drawable/plus_white"
-            app:layout_constraintBottom_toTopOf="@+id/adView"
-            app:layout_constraintEnd_toStartOf="@+id/ib_reset_tb"
-            app:layout_constraintHorizontal_bias="0.019"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAddTime_tb"
-            app:layout_constraintVertical_bias="0.0" />
+    <ImageButton
+        android:id="@+id/ib_back_tb"
+        android:layout_width="@dimen/height_xxs"
+        android:layout_height="@dimen/height_xxs"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="72dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/ib_desc"
+        android:src="@drawable/arrow_white"
+        app:layout_constraintBottom_toTopOf="@+id/flTimer_tb"
+        app:layout_constraintEnd_toStartOf="@+id/tvTitle_tb"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.756" />
 
-        <ImageButton
-            android:id="@+id/btnRecordVoice"
-            android:layout_width="@dimen/width_xs"
-            android:layout_height="@dimen/height_xs"
-            android:background="@android:color/transparent"
-            android:contentDescription="Record voice note"
-            android:src="@drawable/ic_mic_tabata"
-            app:layout_constraintBottom_toTopOf="@+id/adView"
-            app:layout_constraintEnd_toStartOf="@+id/ib_reset_tb"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toEndOf="@+id/btnAdd_tb"
-            app:layout_constraintTop_toBottomOf="@+id/flTimer_tb"
-            app:layout_constraintVertical_bias="0.34" />
+    <LinearLayout
+        android:id="@+id/controlsRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline70">
 
-        <TextView
-            android:id="@+id/tvrounds_tb"
+        <!-- Add Time -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.234" />
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/ib_reset_tb"
-            android:layout_width="@dimen/width_xs"
-            android:layout_height="@dimen/height_xs"
-            android:layout_marginEnd="8dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="FFF"
-            android:scaleType="fitXY"
-            android:src="@drawable/reset_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/tvAddTime_tb"
-            app:layout_constraintTop_toBottomOf="@+id/tvReset_tb"
-            app:layout_constraintVertical_bias="0.0" />
+            <ImageButton
+                android:id="@+id/btnAdd_tb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Add time"
+                android:src="@drawable/plus_white"/>
 
-        <ImageButton
-            android:id="@+id/ib_back_tb"
-            android:layout_width="@dimen/width_s"
-            android:layout_height="@dimen/height_s"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/ib_desc"
-            android:src="@drawable/arrow_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.137" />
+            <TextView
+                android:id="@+id/tvAddTime_tb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/duration"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvAddTime_tb"
+        <!-- Voice Record -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:gravity="center"
-            android:text="@string/duration"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.017"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.712" />
+            android:layout_marginHorizontal="24dp">
 
-        <TextView
-            android:id="@+id/tvReset_tb"
+            <ImageButton
+                android:id="@+id/btnRecordVoice"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Record voice note"
+                android:src="@drawable/ic_mic_tabata"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/voiceN"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Reset -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/reset"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.712" />
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/tvTitle_tb"
-            android:layout_width="@dimen/width_l"
-            android:layout_height="@dimen/height_xs"
-            android:gravity="center"
-            android:text="@string/tabata"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.134" />
+            <ImageButton
+                android:id="@+id/ib_reset_tb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Reset"
+                android:src="@drawable/reset_white"/>
+
+            <TextView
+                android:id="@+id/tvReset_tb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reset"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/controlsRow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flTimer_tb" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Guidelines for responsive positioning -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline70"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

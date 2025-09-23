@@ -4,24 +4,26 @@
     <!-- For Android 10 and below -->
     <!-- Optional: For Android 11 -->
     <uses-permission android:name="com.android.vending.BILLING" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- For Android 13+ -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- For selecting images from gallery (optional on newer Android versions) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- For Android 13+ -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <!-- For selecting images from gallery (optional on newer Android versions) -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" /> <!-- For Android 13+ -->
-
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
     <application
         android:allowBackup="true"
-        android:extractNativeLibs="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:extractNativeLibs="true"
         android:fullBackupContent="@xml/backup_rules"
         android:gravity="center"
         android:icon="@mipmap/ic_launcher"
@@ -32,39 +34,42 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
-            android:name="com.bessadi.fitwod.CameraXActivity"
+            android:name=".CameraXActivity"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.DialogDefaultBackgroundsActivity"
+            android:name=".DialogDefaultBackgroundsActivity"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.ChangeBackgroundActivity"
+            android:name=".ChangeBackgroundActivity"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.SubscriptionActivity"
+            android:name=".SubscriptionActivity"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.BillingActivity"
+            android:name=".BillingActivity"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.FragmentAchievementsActivity"
+            android:name=".FragmentAchievementsActivity"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.CustomDatePickerActivity"
+            android:name=".CustomDatePickerActivity"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.LanguageSelectionActivity"
+            android:name=".LanguageSelectionActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/FullscreenTheme" />
         <activity
-            android:name="com.bessadi.fitwod.FeatureRequestActivity"
+            android:name=".FeatureRequestActivity"
             android:exported="false"
-            android:label="@string/title_activity_request_feature"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
-        <activity
-            android:name="com.bessadi.fitwod.fragment_nutrition_dashboard"
-            android:exported="false" />
+            android:theme="@style/FullscreenTheme"
+            android:label="@string/title_activity_request_feature" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -85,43 +90,57 @@
                 android:resource="@xml/file_paths" />
         </provider> <!-- Water reminder receiver -->
         <activity
-            android:name="com.bessadi.fitwod.PerformanceAnalyticsActivity"
+            android:name=".PerformanceAnalyticsActivity"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.popup_top_menu"
+            android:name=".popup_top_menu"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.calendar"
+            android:name=".calendar"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.workout_history_list"
+            android:name=".workout_history_list"
+            android:theme="@style/FullscreenTheme"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.item_workout_history"
+            android:name=".item_workout_history"
+            android:theme="@style/FullscreenTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.pbemom"
+            android:name=".pbemom"
+            android:theme="@style/FullscreenTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.pbfortime"
+            android:name=".pbfortime"
+            android:theme="@style/FullscreenTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.pbamrap"
+            android:name=".pbamrap"
+            android:theme="@style/FullscreenTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.pbtabata"
+            android:name=".pbtabata"
+            android:theme="@style/FullscreenTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
-            android:name="com.bessadi.fitwod.Menu_Activity"
+            android:name=".Menu_Activity"
+            android:theme="@style/FullscreenTheme"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/FullscreenTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

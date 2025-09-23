@@ -4,7 +4,7 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
-    <string name="voiceN">voice note</string>
+    <string name="voiceN">Voice</string>
     <string name="search">Search workouts...</string>
     <string name="videoN">video note</string>
     <string name="starttime">00</string>
@@ -44,7 +44,7 @@
     <string name="select_language">select language</string>
     <string name="reset">reset</string>
     <string name="cancel">Cancel</string>
-    <string name="round_counter">round counter</string>
+    <string name="round_counter">counter</string>
     <string name="emom">EMOM</string>
     <string name="for_time">FOR TIME</string>
     <string name="work">Work (in sec)</string>
@@ -52,6 +52,7 @@
     <string name="as_many">As many rounds as possible in</string>
     <string name="fortime">As fast as possible for time</string>
     <string name="timecap">Time cap in minutes: </string>
+    <string name="every_minute">Every Minute On Minute</string>
     <string name="rounds">For (Minutes)</string>
     <string name="seconds">Every (Seconds)</string>
     <string name="record_voice_note">Record voice note</string>

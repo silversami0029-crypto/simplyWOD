@@ -1,6 +1,7 @@
 <resources>
     <!-- Width System -->
     <dimen name="width_xs">48dp</dimen>
+    <dimen name="width_xxs">40dp</dimen>
     <dimen name="width_s">62dp</dimen>
     <dimen name="width_m">120dp</dimen>
     <dimen name="width_ml">170dp</dimen>
@@ -11,8 +12,9 @@
     <dimen name="width_xxxl">420dp</dimen>
 
     <!-- Height System -->
+    <dimen name="height_xxs">40dp</dimen>
     <dimen name="height_xs">48dp</dimen>
-    <dimen name="height_xxs">24dp</dimen>
+    <dimen name="height_xxxs">24dp</dimen>
     <dimen name="height_32">32dp</dimen>
     <dimen name="height_xxss">28dp</dimen>
     <dimen name="height_s">55dp</dimen>

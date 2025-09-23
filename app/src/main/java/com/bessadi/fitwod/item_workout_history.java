@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -75,6 +76,8 @@ import java.util.Set;
 
 public class item_workout_history extends AppCompatActivity {
     private WorkoutDbHelper dbHelper;
+    private PremiumManager premiumManager;
+    private SharedPreferences prefs;
     private WorkoutAdapter adapter;
     private RecyclerView recyclerView;
     private SearchView searchView;
@@ -119,6 +122,9 @@ public class item_workout_history extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_history_list);
+
+        // Initialize PremiumManager FIRST
+        initializePremiumManager();
 
         // --- CORRECTED CODE FOR EDGE-TO-EDGE LAYOUT ---
         // 1. Request to draw behind the system bars
@@ -210,6 +216,9 @@ public class item_workout_history extends AppCompatActivity {
         // Load workouts
         loadAllWorkouts();
 
+        //if Premium user then enable the three button Backup, Export, and Restore
+        forPremiumUser();
+
         // Setup media buttons
         //setupMediaButtons();
         Intent intent = getIntent();
@@ -233,6 +242,57 @@ public class item_workout_history extends AppCompatActivity {
         //debugTabataButton();
 
     }
+    private void initializePremiumManager() {
+
+        try {
+            // First try to initialize PremiumManager
+            premiumManager = new PremiumManager(this);
+        } catch (Exception e) {
+            Log.e("item_workout_history", "Error initializing PremiumManager: " + e.getMessage());
+            // Fallback: use SharedPreferences directly
+            prefs = getSharedPreferences("premium_prefs", Context.MODE_PRIVATE);
+        }
+    }
+
+    private void forPremiumUser() {
+        boolean localPremium = false;
+
+        // Safe check: if premiumManager is null, use SharedPreferences directly
+        if (premiumManager != null) {
+            try {
+                localPremium = premiumManager.isPremiumUser();
+            } catch (Exception e) {
+                Log.e("item_workout_history", "Error checking premium status: " + e.getMessage());
+                // Fallback to SharedPreferences
+                localPremium = getPremiumStatusFromPrefs();
+            }
+        } else {
+            // Use SharedPreferences directly as fallback
+            localPremium = getPremiumStatusFromPrefs();
+        }
+
+        Log.d("item_workout_history", "Local premium status: " + localPremium);
+
+        if (localPremium) {
+            btnBackup.setVisibility(View.VISIBLE);
+            btnBackup.setEnabled(true);
+            btnExport.setVisibility(View.VISIBLE);
+            btnExport.setEnabled(true);
+            btnRestore.setVisibility(View.VISIBLE);
+            btnRestore.setEnabled(true);
+        }
+    }
+
+    private boolean getPremiumStatusFromPrefs() {
+        if (prefs == null) {
+            prefs = getSharedPreferences("premium_prefs", Context.MODE_PRIVATE);
+        }
+        return prefs.getBoolean("is_premium", false);
+    }
+
+
+
+
     private void toggleRecording() {
         if (isRecording) {
             stopRecording();
@@ -340,7 +400,7 @@ public class item_workout_history extends AppCompatActivity {
     private void backupData() {
 
             showBackupOptionsDialog();
-       //backupToAppSpecificStorage();
+
 
     }
     private void backupToAppSpecificStorage() {
@@ -453,9 +513,9 @@ public class item_workout_history extends AppCompatActivity {
 
 
         private void exportLogs() {
-       // if (checkStoragePermission()) {
+
             showExportOptionsDialog();
-       // }
+
     }
     private void showBackupOptionsDialog() {
         String[] options = {"Backup Database Only", "Backup Database + Photos"};

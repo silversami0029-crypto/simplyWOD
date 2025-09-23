@@ -19,7 +19,8 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/settings"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <!-- App Title -->
     <TextView

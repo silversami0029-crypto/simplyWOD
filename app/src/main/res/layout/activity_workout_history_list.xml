@@ -153,7 +153,8 @@
             android:layout_height="@dimen/height_xs"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Backup data"
-            android:src="@drawable/ic_backup" />
+            android:src="@drawable/ic_backup"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/btn_export"
@@ -161,7 +162,8 @@
             android:layout_height="@dimen/height_xs"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Export logs"
-            android:src="@drawable/ic_export" />
+            android:src="@drawable/ic_export"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/btn_add_photo"
@@ -186,7 +188,8 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/restore_database"
-            android:src="@drawable/ic_restore" />
+            android:src="@drawable/ic_restore"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/ib_back_db"

@@ -65,6 +65,12 @@
             <item name="android:fontFamily">sans-serif-medium</item>
         </style>
 
+    <style name="FullscreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
         <style name="MyPopupMenu" parent="Widget.AppCompat.PopupMenu">
             <item name="android:popupBackground">@color/white</item>
             <item name="android:textColor">@color/black</item>
