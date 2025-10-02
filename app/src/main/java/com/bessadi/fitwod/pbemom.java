@@ -142,22 +142,7 @@ public class pbemom extends AppCompatActivity {
                 else {goback_to_mainMenu();} // goes back to main menu
             }
         });
-       /* resumeTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //timeLeftInMillis = timeSelected * 1000 - timeProgress * 1000;
-               // totalCycles = roundSelected - cycleCount;
-                startTimer(timeLeftInMillis); //call startTimer function
-                resumeTv.setEnabled(false);
-                resumeTv.setVisibility(INVISIBLE);
-                timeLeftTv.setVisibility(VISIBLE);
-                timeLeftTv.setEnabled(true);
-                //pauseBtn.setVisibility(INVISIBLE);
-               // pauseBtn.setEnabled(false);
-                playBtn.setVisibility(INVISIBLE);
-                playBtn.setEnabled(false);
-            }
-        });*/
+
 
         timeLeftTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -415,10 +400,11 @@ public class pbemom extends AppCompatActivity {
 
                 // Sound effects
                 if (seconds == 10 && minutes == 0) {
-                    // playTenSec();
+                     playTenSec();
                 }
-                if (seconds == 3 || seconds == 2 || seconds == 1) {
-                    // playsinglebeep();
+                //if (seconds == 3 || seconds == 2 || seconds == 1) {
+                if (seconds == 0) {
+                     playsinglebeep();
                 }
             }
 
@@ -427,11 +413,13 @@ public class pbemom extends AppCompatActivity {
                 // Update round display
                 TextView roundDisplay = findViewById(R.id.tvrounds);
                 roundDisplay.setText("Every "+ timeSelected + " seconds for " + (roundSelected - cycleCount) + " minutes");
+                roundDisplay.setText(roundSelected + " / " + cycleCount);
                 cycleCount++; // Increment FIRST to avoid extra cycle
                 if (cycleCount <= roundSelected) {
                     timeProgress = 0;
                     progressBar.setProgress(timeSelected);
                     startTimer(timeSelected * 1000); // Start next round
+                    //playsinglebeep();// beep new round
 
                 } else {
                     Toast.makeText(pbemom.this, "Times up!!!", Toast.LENGTH_SHORT).show();

@@ -140,7 +140,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginHorizontal="12dp">
 
             <ImageButton
                 android:id="@+id/btnAdd_amrap"
@@ -166,7 +167,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginHorizontal="24dp">
+            android:layout_marginHorizontal="12dp">
 
             <ImageButton
                 android:id="@+id/btnRecordVoice_amrap"
@@ -190,7 +191,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginHorizontal="12dp">
 
             <ImageButton
                 android:id="@+id/ib_reset_amrap"
@@ -214,7 +216,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginHorizontal="24dp">
+            android:layout_marginHorizontal="12dp">
 
             <TextView
                 android:id="@+id/tvcounterButton_amrap"
@@ -224,7 +226,7 @@
                 android:gravity="center"
                 android:text="@string/ft_counter"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/ib_reset_amrap"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.946"
